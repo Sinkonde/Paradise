@@ -67,4 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('send-results', 'SendEmailToUsersController@sendExamResultsToOneSubscriber')->name('mail.send_results');
     Route::get('send-results-to-all', 'SendEmailToUsersController@sendExamResultsToAllSubscribers')->name('mail.send_results_to_all');
 
+    //Reports
+    Route::get('mkeka-pdf', 'ReportPDF@mkeka')->name('mkeka-pdf');
+
 });

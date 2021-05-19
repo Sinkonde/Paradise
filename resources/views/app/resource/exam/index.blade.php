@@ -2,10 +2,6 @@
 @section('contents')
     <div class="w-100 flex justify-center ">
         <div class="w-full flex flex-col py-4 bg-white shadow">
-            <div class="w-full flex justify-between items-center px-4 pb-4 mb-4 border-b">
-                <p class="text-xl md:text-xl text-gray-600 font-thin">All Exams <span>({{$exams->count()}})</span></p>
-            </div>
-
             <div class="w-full px-4 hidden md:flex text-sm">
                 @if (count($exams) == 0)
                     <p class="text-xl font-semibold">Nothing to list</p>
@@ -55,4 +51,8 @@
     <a class="fixed bottom-5 right-5" href="{{route('exams.create')}}" title="create new exam">
         <button class=" text-sm py-1 px-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded" >New</button>
     </a>
+@endsection
+
+@section('title')
+    <p class="text-lg md:text-lg text-gray-600 font-thin">All Exams <span>({{$exams->count()}})</span></p>
 @endsection

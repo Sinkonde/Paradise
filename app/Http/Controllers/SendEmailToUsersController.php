@@ -32,4 +32,5 @@ class SendEmailToUsersController extends Controller
 
         return back();
     }
+    
 }

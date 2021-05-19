@@ -2,10 +2,10 @@
 @section('contents')
     <div class="w-100 flex justify-center">
         <div class="w-full flex flex-col py-4 bg-white shadow rounded">
-            <div class="w-full flex justify-between items-center px-4 pb-4 md:px-4 md:pb-4 md:mb-4 border-b">
+            {{-- <div class="w-full flex justify-between items-center px-4 pb-4 md:px-4 md:pb-4 md:mb-4 border-b">
                 <p class="text-xl md:text-xl text-gray-600 font-thin">All Teachers</p>
                 <p class="text-xl md:text-xl text-gray-600 cursor-arrow" title="Total Teachers">{{$teachers->count()}}</span></p>
-            </div>
+            </div> --}}
 
             <div class="w-full px-4 hidden md:flex">
                 @if (count($teachers) == 0)
@@ -24,9 +24,9 @@
                             <tr class="hover:bg-gray-50">
                                 <td class="py-2 text-center">{{$loop->iteration}}</td>
                                 <td class="py-2">
-                                    <a href="#" class="hover:underline hover:text-blue-800">
-                                    {{$teacher->worker->guardian->particulars->gender == 'm' ? 'Mr. ' : "Madam "}}
-                                    {{ucwords(strtolower($teacher->worker->guardian->particulars->first_name.' '.$teacher->worker->guardian->particulars->second_name.' '.$teacher->worker->guardian->particulars->sur_name))}}
+                                    <a href="{{route('users.show',$teacher->worker->guardian->particulars->id)}}" class="hover:underline hover:text-blue-800">
+                                        {{$teacher->worker->guardian->particulars->gender == 'm' ? 'Mr. ' : "Madam "}}
+                                        {{ucwords(strtolower($teacher->worker->guardian->particulars->first_name.' '.$teacher->worker->guardian->particulars->second_name.' '.$teacher->worker->guardian->particulars->sur_name))}}
                                     </a>
                                 </td>
                                 <td class="py-2 flex flex-row">
@@ -50,4 +50,8 @@
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
         </button>
     </a>
+@endsection
+
+@section('title')
+<p class="text-lg text-gray-600 font-thin">Teachers</p>
 @endsection

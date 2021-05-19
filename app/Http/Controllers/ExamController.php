@@ -65,7 +65,7 @@ class ExamController extends Controller
      */
     public function show(Exam $exam)
     {
-        //
+        return view('app.resource.exam.crud.show',['exam'=>$exam]);
     }
 
     /**
@@ -74,9 +74,10 @@ class ExamController extends Controller
      * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function edit(Exam $exam)
+    public function edit(Request $request, Exam $exam)
     {
-        //
+        return view('app.resource.exam.crud.edit', ['callback'=>$request->callback, 'class'=>$request->class, 'exam'=>$exam]);
+
     }
 
     /**
@@ -88,7 +89,10 @@ class ExamController extends Controller
      */
     public function update(Request $request, Exam $exam)
     {
-        //
+        $exam->update($request->only(['name', 'type', 'date', 'total_marks']));
+
+        if($request->callback) return redirect($request->callback);
+        return redirect(route('exams.index'));
     }
 
     /**
