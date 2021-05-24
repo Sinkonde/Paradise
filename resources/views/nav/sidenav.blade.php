@@ -3,11 +3,11 @@
 {{-- <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script> --}}
     <div class="py-3 px-4 bg-gray-900 text-gray-200 font-bold overflow-hidden truncate text-center sticky top-0">
-        The School Logo
+        {{config('app.name', 'The School')}}
     </div>
 
 
-    <div class="flex flex-col flex-grow bg-gray-700 justify-between">
+    <div class="flex flex-col flex-grow bg-black justify-between">
         <div class="flex flex-col">
             <div class="logo w-2/3 my-5 flex mx-auto">
                 <img src="{{asset('img/logo3.png')}}" />
@@ -63,8 +63,8 @@
         </div>
 
         {{-- bottom nav --}}
-        <div class="flex justify-between p-3 bg-gray-800">
-        </div>
+        {{-- <div class="flex justify-between p-3 bg-gray-800">
+        </div> --}}
     </div>
     @yield('links')
 @endsection
