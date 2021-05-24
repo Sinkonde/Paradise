@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
+<main class="container mx-auto max-w-lg mt-10 max-h-full px-4">
     <div class="flex">
         <div class="w-full">
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-lg">
+            <section class="flex flex-col break-words bg-white border-1 rounded-md shadow-lg">
 
-                <header class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                <header class="font-semibold bg-black text-yellow-300 text-2xl text-center py-3 px-6 sm:py-6 sm:px-8 rounded-t-md">
                     {{ __('Login') }}
                 </header>
 
@@ -68,10 +68,7 @@
 
                         @if (Route::has('register'))
                         <p class="w-full text-xs text-center text-gray-700 my-6 sm:text-sm sm:my-8">
-                            {{ __("Don't have an account?") }}
-                            <a class="text-blue-500 hover:text-blue-700 no-underline hover:underline" href="{{ route('register') }}">
-                                {{ __('Register') }}
-                            </a>
+                            Created with <span class="text-red-500">&#x2764;</span> by Raphael Sinkonde
                         </p>
                         @endif
                     </div>

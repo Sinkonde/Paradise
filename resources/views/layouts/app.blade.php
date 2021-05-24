@@ -15,8 +15,8 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none font-sans">
-    <div id="app">
+<body class="bg-gray-100 h-100 antialiased leading-none font-sans">
+    <div id="app" class="h-100 flex items-center justify-center">
         {{-- <header class="bg-blue-900 py-6">
             <div class="container mx-auto flex justify-between items-center px-6">
                 <div>
