@@ -1,13 +1,13 @@
 @extends('index')
 @section('contents')
     <div class="w-100 flex justify-center ">
-        <div class="w-full flex flex-col py-4 bg-white shadow">
+        <div class="w-full flex flex-col py-4 md:bg-white md:shadow">
 
-            <div class="w-full px-4 hidden md:flex text-sm">
+            <div class="w-full md:px-4 text-sm">
                 @if (count($levels) == 0)
                     <p class="text-2xl font-semibold">Nothing to list</p>
                 @else
-                <table class="w-full">
+                <table class="hidden md:block md-flex flex-col">
                     <thead>
                         <tr class=" border-b border-gray-100">
                             <th class="pb-4">SN</th>
@@ -34,6 +34,15 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <div class="md:hidden w-full">
+                    @foreach ($levels as $level)
+                    <div class="w-full py-5 mb-4 flex flex-col bg-white px-3 rounded shadow">
+                        <p class="text-lg">{{ucfirst($level->name)}}</p>
+                        <p class="text-gray-300">{{ucfirst($level->description)}}</p>
+                    </div>
+                   @endforeach
+                </div>
                 @endif
             </div>
         </div>

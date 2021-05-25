@@ -8,7 +8,7 @@
 
     <div class="w-full px-4 hidden md:flex flex-col text-sm">
         @if (count($students) == 0)
-            <p class="text-xl font-semibold">Nothing to list</p>
+            <p class="text-xl font-semibold pl-4">Nothing to list</p>
         @else
         <table class="w-full mb-4">
             <thead>

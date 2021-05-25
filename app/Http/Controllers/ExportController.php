@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MarksTemplate;
 use App\Exports\RemedialCollection;
-
+use App\Exports\StudentTemplate;
 use App\Traits\ClassControllerVariables;
 
 class ExportController extends Controller
@@ -22,5 +22,10 @@ class ExportController extends Controller
     public function remedialCollectionTemplate(Clas $class){
 
         return Excel::download(new RemedialCollection($this->getMembers($this->getOtherClassesIdsFromClass($class), ['name']),$class), 'Class '.$class->grade->name.' Remedial template - ('.$class->academic_year->year.').xlsx');
+    }
+
+    public function studentTempalate(){
+
+        return Excel::download(new StudentTemplate(), 'student_template.xlsx');
     }
 }

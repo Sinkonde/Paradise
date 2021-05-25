@@ -23,15 +23,19 @@
     @livewireStyles
     <title>Document</title>
 </head>
-<body  class="w-100 bg-gray-50 flex justify-between">
+<body  class="w-100 bg-gray-50 flex justify-between" x-data={nav:false}>
     {{-- side nav --}}
-    <div class="hidden h-screen w-2/12 bg-teal-300 sticky top-0 md:flex flex-col">
+    <div class="hidden h-screen w-full md:w-2/12 bg-black md:sticky top-0 md:flex flex-col">
+        @yield('sidenav')
+    </div>
+
+    <div class="h-screen w-full md:w-2/12 bg-black md:sticky top-0 fixed md:hidden flex-col" x-show="nav" @click="nav=false">
         @yield('sidenav')
     </div>
 
     {{-- main part --}}
     <div class="w-full md:w-10/12">
-        <div class="w-full py-3 px-4 bg-white text-gray-500 shadow sticky top-0 flex justify-between font-thin" x-data={showCard:false}>
+        <div class="w-full py-3 px-4 bg-white text-gray-500 shadow sticky top-0 flex justify-between font-thin z-50" x-data={showCard:false}>
             <div class="flex">
                 <a href="{{url()->previous()}}">
                     <div  title="Click to go back">
@@ -46,12 +50,17 @@
                 <div class="flex">
                     @yield('navs')
                 </div>
-                <div class="flex md:ml-5" title="{{Auth::user()->first_name}}" @click="showCard=true">
+                <div class="hidden md:flex md:ml-5" title="{{Auth::user()->first_name}}" @click="showCard=true">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div class="flex md:hidden text-lg">
+                    <button @click="nav=true">
+                        <i class="fi fi-nav-icon"></i>
+                    </button>
                 </div>
             </div>
 
-            <div x-show="showCard" @click.away="showCard=false" class="absolute flex flex-col rounded z-50 shadow-lg border right-2 mt-8 bg-white divide-y w-1/6">
+            <div x-show="showCard" @click.away="showCard=false" class="hidden absolute md:flex flex-col rounded z-50 shadow-lg border right-2 mt-8 bg-white divide-y w-1/6">
                 <a title="View my profile" href="{{route('users.show', Auth::user()->id)}}" class="px-2 py-1">My Profile</a>
                 <a class="px-2 py-1 cursor-pointer hover:bg-gray-50" href="{{ route('logout') }}"
                            class="no-underline hover:underline"
@@ -62,6 +71,7 @@
                         </form>
             </div>
         </div>
+
         <div class="px-4">
             @yield('contents')
         </div>

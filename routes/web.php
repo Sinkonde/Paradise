@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
     //excel templates
     Route::get('export/results', 'ExportController@resultTemplate')->name('result.template');
     Route::get('remedial_collection_template/{class}', 'ExportController@remedialCollectionTemplate')->name('remedial.template');
+    Route::get('students/template', 'ExportController@studentTemplate')->name('student.template');
 
     //mails
     Route::get('send-results', 'SendEmailToUsersController@sendExamResultsToOneSubscriber')->name('mail.send_results');
