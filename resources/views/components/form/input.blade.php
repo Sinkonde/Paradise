@@ -1,3 +1,6 @@
+@php
+    $color = isset($color) ? $color : 'gray';
+@endphp
 <div class="{{$classes}} flex flex-col">
     <label for="{{$name}}" class="font-thin text-{{$color}}-500 text-xs">{{$label}}</label>
 
