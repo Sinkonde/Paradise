@@ -71,3 +71,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('mkeka-pdf', 'ReportPDF@mkeka')->name('mkeka-pdf');
 
 });
+//
