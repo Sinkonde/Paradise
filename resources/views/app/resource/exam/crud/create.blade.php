@@ -18,7 +18,7 @@
                             <x-form.input classes="w-full mb-4" label="Name" name="name" />
                         </div>
                         <div class="w-full md:w-1/4 md:pl-2">
-                            <x-form.input classes="w-full mb-4" label="Type" name="type" select="true">
+                            <x-form.input classes="w-full mb-4" label="Type" name="type" select="true" type="select">
                                 @foreach (['public','private'] as $type)
                                     <option>{{$type}}</option>
                                 @endforeach
