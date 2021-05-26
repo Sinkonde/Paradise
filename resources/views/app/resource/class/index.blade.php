@@ -7,7 +7,7 @@
                 @if (count($classes) == 0)
                     <p class="text-xl font-semibold">Nothing to list</p>
                 @else
-                <table class="w-full hidden md:flex">
+                <table class="w-full hidden md:table">
                     <thead>
                         <tr class=" border-b border-gray-100">
                             <th class="pb-2">SN</th>
@@ -44,8 +44,8 @@
                     <div class="flex justify-between items-center mb-4 bg-white rounded p-4 shadow">
                         <div class="flex flex-col text-lg">
                             <p class="text-xl"><a class="text-blue-500 hover:underline" href="{{route('classes.show',$class->id)}}">{{$class->grade->name}} {{$class->stream->name}}</a></p>
-                            <p class="text-gray-300 font-thin">Members: <b class="font-semibold">{{count($class->members)}}</b></p>
-                            <p class="text-gray-300 font-thin">Year: <b class="font-semibold">{{$class->academic_year->year}}</b></p>
+                            <p class="text-gray-500 font-thin">Members: <b class="font-semibold">{{count($class->members)}}</b></p>
+                            <p class="text-gray-500 font-thin">Year: <b class="font-semibold">{{$class->academic_year->year}}</b></p>
                         </div>
                         <div>
                             <a class="mr-2 text-blue-400 hover:underline hover:text-blue-600" href="{{route('classes.edit', $class->id)}}">Edit</a>
@@ -64,7 +64,7 @@
     </div>
 
     <a href="{{route('classes.create',['callback' => route('classes.index')])}}" class="absolute bottom-4 right-4">
-        <button class="rounded-full p-2 bg-yellow-500 text-white hover:bg-yellow-600 shadow hover:shadow-lg">
+        <button class="rounded-full p-4 md:p-2 bg-yellow-500 text-white hover:bg-yellow-600 shadow hover:shadow-lg">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
         </button>
     </a>

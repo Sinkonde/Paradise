@@ -2,7 +2,7 @@
 <div class="w-full text-sm mt-5 bg-white rounded shadow-lg">
     <table class="border w-full">
         <tr class="border-b py-1 px-1 text-left bg-gray-200">
-            <td colspan="2" class="px-1 py-2"><p class="font-semibold"><b>About my Guarantor - {{$student->parents()->first()->relation->name}}</b></p></td>
+            <td colspan="2" class="px-1 py-2"><p class="font-semibold">Guarantor <b>{{$student->parents()->first()->relation->name}}</b></p></td>
         </tr>
         <tr>
             <th class="border-b py- px-2 text-left">Full name</th>

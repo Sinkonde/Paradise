@@ -1,14 +1,14 @@
 @extends('index')
 @section('contents')
     <div class="w-100 flex justify-center">
-        <div class="w-full p-4 bg-white shadow">
+        <div class="w-full py-4 md:bg-white">
 
             <div class="w-full flex justify-between items-center">
                 <div class="w-full flex justify-between flex-col">
                     <form action="{{route('students.store')}}" method="post">
                         @csrf
                         <input type="hidden" value="{{$callback}}" name="callback" />
-                        <div class="student-info p-4 rounded bg-gray-50 border border-gray-200 flex flex-col">
+                        <div class="student-info p-4 rounded bg-white border border-gray-200 flex flex-col  shadow">
                             <p class="mb-4 text-lg font-thin">Student Info</p>
                             <div class="flex flex-col md:flex-row mb-2">
                                 <x-form.input label="First Name" name="sfirst_name" classes="mb-2 md:mb-0 md:w-1/3 w-full" />
@@ -16,7 +16,7 @@
                                 <x-form.input label="Sur Name" name="ssur_name" classes="mb-2 md:mb-0 md:pl-4 md:w-1/3 w-full" />
                             </div>
                             <div class="flex">
-                                <x-form.input label="Birth Date" name="dob" classes="w-1/3" />
+                                <x-form.input label="Birth Date" name="dob" classes="w-1/3" type="date" />
                                 <x-form.input classes="pl-4 w-1/3" label="Gender" name="sgender" select="true">
                                     @foreach ([['name'=>'Male', 'value'=>'m'], ['name'=>'Female', 'value'=>'f']] as $gender)
                                         <option value="{{$gender['value']}}">{{$gender['name']}}</option>
@@ -34,7 +34,7 @@
                                 </x-form.input>
                             </div>
                         </div>
-                        <div class="parent-info my-6 p-4 rounded bg-yellow-50 border border-yellow-200 flex flex-col">
+                        <div class="parent-info my-6 p-4 rounded bg-yellow-50 border border-yellow-200 flex flex-col shadow">
                             <p class="mb-4 text-lg font-thin">Parent Info</p>
                             <div class="flex flex-col md:flex-row mb-2">
                                 <x-form.input label="First Name" name="first_name" classes="mb-2 md:mb-0 md:w-1/3 w-full" />

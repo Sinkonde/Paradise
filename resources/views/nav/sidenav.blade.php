@@ -2,7 +2,7 @@
 @section('sidenav')
 {{-- <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script> --}}
-    <div class="py-3 px-4 bg-gray-900 text-gray-200 font-bold overflow-hidden truncate text-center sticky top-0">
+    <div class="py-3 px-4 bg-gray-900 text-gray-200 font-bold overflow-hidden truncate text-center hidden md:table sticky top-0">
         {{config('app.name', 'The School')}}
     </div>
 

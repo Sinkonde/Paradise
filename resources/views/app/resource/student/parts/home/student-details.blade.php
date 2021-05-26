@@ -3,7 +3,7 @@
 
     <table class="border w-full">
         <tr class="border-b py-1 px-1 text-left bg-gray-200">
-            <td colspan="2" class="px-1 py-2"><p class="text-sm font-thin"><b>About Me</b></p></td>
+            <td colspan="2" class="px-1 py-2"><p class="text-sm font-semibold"><b>About</b></p></td>
         </tr>
         <tr>
             <th class="border-b py- px-1 text-left">Full name</th>

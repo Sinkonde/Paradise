@@ -1,6 +1,6 @@
 @section('members')
 <div class="w-full text-sm md:bg-white -mt-4 md:p-4 pt-4 md:shadow">
-    <div class="flex justify-between pb-5 text-gray-400 md:border-b border-gray-100">
+    <div class="flex justify-between pb-5 text-gray-500 md:border-b border-gray-100">
         <div>
             <p class="text-lg font-thin">
                 @if (count($class->members))
@@ -12,7 +12,7 @@
         </div>
         <div class="flex items-center">
             <a href="{{route('classes.show',['class'=>$class->id, 'import_members'=>'pdf'])}}" title="List in PDF">
-                <span class="fi fi-acrobat-reader bg-red-50 hover:bg-red-100 px-2 py-1 rounded text-red-500 hover:text-red-600"></span>
+                <span class="fi fi-acrobat-reader md:bg-red-50 md:hover:bg-red-100 px-2 py-1 rounded md:text-red-500 md:hover:text-red-600 "></span>
             </a>
         </div>
 
@@ -82,12 +82,12 @@
                             {{ucwords(strtolower($member->first_name.' '.$member->second_name.' '.$member->sur_name))}}
                         </a>
                     </p>
-                    <p class="text-gray-300">
+                    <p class="text-gray-500">
                         Gender: <span class="font-semibold">@if ($member->gender == 'm')
                             Boy @else Girl
                         @endif</span>
                     </p>
-                    <p class="text-gray-300">
+                    <p class="text-gray-500">
                         Birth: <span class="font-semibold" title="{{date('Y', strtotime($member->dob))}}">{{date("jS M", strtotime($member->dob))}}</span>
                     </p>
                 </div>

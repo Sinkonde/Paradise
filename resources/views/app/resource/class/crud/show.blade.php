@@ -7,7 +7,7 @@
     <div class="w-100 flex justify-center items-center">
         <div class="w-full flex flex-col py-4">
 
-            <div class="w-full flex flex-col bg-gray-50">
+            <div class="w-full flex flex-col md:bg-gray-50 bg-gray-100">
                 @switch($link)
                     @case('m')
                         @yield('members')

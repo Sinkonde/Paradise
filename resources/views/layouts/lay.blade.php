@@ -13,17 +13,19 @@
     {{-- tippy --}}
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css" integrity="sha512-C7hOmCgGzihKXzyPU/z4nv97W0d9bv4ALuuEbSf6hm93myico9qa0hv4dODThvCsqQUmKmLcJmlpRmCaApr83g==" crossorigin="anonymous" />
 
     <!-- Styles -->
     <link href="{{ asset('css/fontisto.css') }}" rel="stylesheet">
     @livewireStyles
-    <title>Document</title>
+    <title>{{config('app.name')}}</title>
 </head>
-<body  class="w-100 bg-gray-50 flex justify-between" x-data={nav:false,showCard:false}>
+<body  class="w-100 bg-gray-100 md:bg-gray-50 flex justify-between" x-data={nav:false,showCard:false}>
     {{-- side nav --}}
     <div class="hidden h-screen w-full md:w-2/12 bg-black md:sticky top-0 md:flex flex-col">
         @yield('sidenav')

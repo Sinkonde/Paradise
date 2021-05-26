@@ -4,7 +4,7 @@
 @include('app.resource.student.parts.timelines.timelines')
 @section('contents')
     <div class="w-100 flex justify-center items-center">
-        <div class="w-full flex flex-col py-4 bg-gray-50 md:px-8 px-4">
+        <div class="w-full flex flex-col py-4 md:px-8 px-0">
             {{-- <div class="w-full flex justify-between items-center py-4 md:pb-4 bg-white shadow px-4 rounded mb-5">
 
                 <div class="flex justify-between">
