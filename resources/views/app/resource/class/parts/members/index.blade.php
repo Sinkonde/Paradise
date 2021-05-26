@@ -1,6 +1,6 @@
 @section('members')
-<div class="w-full text-sm bg-white -mt-4 p-4 shadow">
-    <div class="flex justify-between pb-5 text-gray-400 border-b border-gray-100">
+<div class="w-full text-sm md:bg-white -mt-4 md:p-4 pt-4 md:shadow">
+    <div class="flex justify-between pb-5 text-gray-400 md:border-b border-gray-100">
         <div>
             <p class="text-lg font-thin">
                 @if (count($class->members))
@@ -18,7 +18,7 @@
 
     </div>
     @if (count($class->members))
-    <table class="w-full">
+    <table class="w-full hidden md:table">
         <thead class="stick top-10">
             <tr class="bg-gray-100">
                 <th class=" py-3">SN</th>
@@ -70,6 +70,35 @@
             @endforeach
         </tbody>
     </table>
+    <div class="w-full md:hidden">
+        @foreach ($members as $member)
+            @php
+                $parent = $member->student->parents()->first();
+            @endphp
+            <div class="w-full bg-white rounded shadow mb-4 flex justify-between  p-4">
+                <div class="flex flex-col">
+                    <p class="text-xl">
+                        <a class="text-blue-500 hover:underline" href="{{route('students.show', $member->student->id)}}">
+                            {{ucwords(strtolower($member->first_name.' '.$member->second_name.' '.$member->sur_name))}}
+                        </a>
+                    </p>
+                    <p class="text-gray-300">
+                        Gender: <span class="font-semibold">@if ($member->gender == 'm')
+                            Boy @else Girl
+                        @endif</span>
+                    </p>
+                    <p class="text-gray-300">
+                        Birth: <span class="font-semibold" title="{{date('Y', strtotime($member->dob))}}">{{date("jS M", strtotime($member->dob))}}</span>
+                    </p>
+                </div>
+                <div class="flex items-center text-blue-500">
+                    <a href="{{route('students.edit', ['student'=>$member->student->id, 'callback' => route('classes.show',['class'=>$class->id,'link'=>'m'])])}}">
+                        Edit
+                    </a>
+                </div>
+            </div>
+        @endforeach
+    </div>
     @endif
 </div>
 

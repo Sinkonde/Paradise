@@ -23,7 +23,7 @@
     @livewireStyles
     <title>Document</title>
 </head>
-<body  class="w-100 bg-gray-50 flex justify-between" x-data={nav:false}>
+<body  class="w-100 bg-gray-50 flex justify-between" x-data={nav:false,showCard:false}>
     {{-- side nav --}}
     <div class="hidden h-screen w-full md:w-2/12 bg-black md:sticky top-0 md:flex flex-col">
         @yield('sidenav')
@@ -35,7 +35,7 @@
 
     {{-- main part --}}
     <div class="w-full md:w-10/12">
-        <div class="w-full py-3 px-4 bg-white text-gray-500 shadow sticky top-0 flex justify-between font-thin z-50" x-data={showCard:false}>
+        <div class="w-full py-3 px-4 bg-white text-gray-500 shadow sticky top-0 flex justify-between font-thin z-50">
             <div class="flex">
                 <a href="{{url()->previous()}}">
                     <div  title="Click to go back">
@@ -54,9 +54,7 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <div class="flex md:hidden text-lg">
-                    <button @click="nav=true">
-                        <i class="fi fi-nav-icon"></i>
-                    </button>
+                    <i class="fi fi-nav-icon"  @click="nav=true"  @click.away="nav=false"></i>
                 </div>
             </div>
 

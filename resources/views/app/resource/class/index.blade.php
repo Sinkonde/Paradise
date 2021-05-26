@@ -1,19 +1,13 @@
 @extends('index')
 @section('contents')
     <div class="w-100 flex justify-center ">
-        <div class="w-full flex flex-col py-4 bg-white shadow">
-            {{-- <div class="w-full flex justify-between items-center px-4 pb-4 mb-4 border-b">
+        <div class="w-full flex flex-col py-4 md:bg-white md:shadow">
 
-                <a href="{{route('classes.create')}}">
-                    <x-form.button color='yellow' label='Create New Class' />
-                </a>
-            </div> --}}
-
-            <div class="w-full px-4 hidden md:flex text-sm">
+            <div class="w-full md:px-4 md:flex text-sm">
                 @if (count($classes) == 0)
                     <p class="text-xl font-semibold">Nothing to list</p>
                 @else
-                <table class="w-full">
+                <table class="w-full hidden md:flex">
                     <thead>
                         <tr class=" border-b border-gray-100">
                             <th class="pb-2">SN</th>
@@ -44,6 +38,26 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <div class="md:hidden">
+                    @foreach ($classes as $class)
+                    <div class="flex justify-between items-center mb-4 bg-white rounded p-4 shadow">
+                        <div class="flex flex-col text-lg">
+                            <p class="text-xl"><a class="text-blue-500 hover:underline" href="{{route('classes.show',$class->id)}}">{{$class->grade->name}} {{$class->stream->name}}</a></p>
+                            <p class="text-gray-300 font-thin">Members: <b class="font-semibold">{{count($class->members)}}</b></p>
+                            <p class="text-gray-300 font-thin">Year: <b class="font-semibold">{{$class->academic_year->year}}</b></p>
+                        </div>
+                        <div>
+                            <a class="mr-2 text-blue-400 hover:underline hover:text-blue-600" href="{{route('classes.edit', $class->id)}}">Edit</a>
+                                        <form action="{{route('classes.destroy', $class->id)}}" method="post">
+                                            @csrf
+                                            {{method_field('delete')}}
+                                            {{-- <button class="cursor-pointer hover:underline text-red-300 hover:text-red-500" role="button">Delete</button> --}}
+                                        </form>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
                 @endif
             </div>
         </div>
@@ -57,5 +71,5 @@
 @endsection
 
 @section('title')
-<p class="text-lg text-gray-600 font-semibold">All Classes so far <span>({{$classes->count()}} classes)</span></p>
+<p class="text-lg text-gray-600 font-semibold">Classes <span>({{$classes->count()}} classes)</span></p>
 @endsection

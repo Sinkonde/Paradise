@@ -44,4 +44,13 @@
         <a href="{{route('classes.show',['class' => $class->id, 'link' => $a_link['link']])}}" class=" @if($a_link['link'] == $link) text-blue-600 font-semibold @endif pl-4 hover:text-blue-900">{{ucfirst($a_link['name'])}}</a>
     @endforeach
 </div>
+
+<div class="flex md:hidden justify-between md:pr-5" x-data={show:false}>
+    <span class="mr-5" x-on:click="show=true" @click.away="show=false">NAV</span>
+    <div class="absolute flex flex-col w-3/3 mt-4 shadow-lg border bg-white p-4 mr-10 rounded" x-show="show">
+        @foreach ($links as $a_link)
+            <a href="{{route('classes.show',['class' => $class->id, 'link' => $a_link['link']])}}" class=" @if($a_link['link'] == $link) text-blue-600 font-semibold @endif hover:text-blue-900 py-1">{{ucfirst($a_link['name'])}}</a>
+        @endforeach
+    </div>
+</div>
 @endsection
