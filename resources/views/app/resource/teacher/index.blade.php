@@ -1,17 +1,17 @@
 @extends('index')
 @section('contents')
     <div class="w-100 flex justify-center">
-        <div class="w-full flex flex-col py-4 bg-white shadow rounded">
+        <div class="w-full flex flex-col py-4 md:bg-white md:shadow md:rounded">
             {{-- <div class="w-full flex justify-between items-center px-4 pb-4 md:px-4 md:pb-4 md:mb-4 border-b">
                 <p class="text-xl md:text-xl text-gray-600 font-thin">All Teachers</p>
                 <p class="text-xl md:text-xl text-gray-600 cursor-arrow" title="Total Teachers">{{$teachers->count()}}</span></p>
             </div> --}}
 
-            <div class="w-full px-4 hidden md:flex">
+            <div class="w-full px-4">
                 @if (count($teachers) == 0)
                     <p class="text-xl font-semibold text-gray-400">No any teachers yet! <a class="text-blue-400 hover:text-blue-500 hover:underline" href="{{route('teachers.create',['callback' => route('teachers.index')])}}">Add</a> now</p>
                 @else
-                <table class="w-full text-sm">
+                <table class="w-full text-sm  hidden md:table">
                     <thead>
                         <tr class=" border-b border-gray-100">
                             <th class="pb-4">SN</th>
@@ -40,6 +40,25 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div>
+                    @foreach ($teachers as $teacher)
+                    <div class="flex justify-between md:hidden p-3 bg-white rounded shadow my-2">
+                        <p class="text-md">
+                            <a href="{{route('users.show',$teacher->worker->guardian->particulars->id)}}" class="hover:underline text-blue-500">
+                                {{$teacher->worker->guardian->particulars->gender == 'm' ? 'Mr. ' : "Madam "}}
+                                {{ucwords(strtolower($teacher->worker->guardian->particulars->first_name.' '.$teacher->worker->guardian->particulars->second_name.' '.$teacher->worker->guardian->particulars->sur_name))}}
+                            </a>
+                        </p>
+                        <div>
+                            <form action="{{route('teachers.destroy', $teacher->id)}}" method="post">
+                                @csrf
+                                {{method_field('delete')}}
+                                <button class="cursor-pointer hover:underline text-red-300 hover:text-red-500" role="button">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
                 @endif
             </div>
         </div>

@@ -42,10 +42,9 @@
                 <div class="md:hidden">
                     @foreach ($classes as $class)
                     <div class="flex justify-between items-center mb-4 bg-white rounded p-4 shadow">
-                        <div class="flex flex-col text-lg">
-                            <p class="text-xl"><a class="text-blue-500 hover:underline" href="{{route('classes.show',$class->id)}}">{{$class->grade->name}} {{$class->stream->name}}</a></p>
-                            <p class="text-gray-500 font-thin">Members: <b class="font-semibold">{{count($class->members)}}</b></p>
-                            <p class="text-gray-500 font-thin">Year: <b class="font-semibold">{{$class->academic_year->year}}</b></p>
+                        <div class="flex flex-col">
+                            <p class="text-lg"><a class="text-blue-500 hover:underline" href="{{route('classes.show',$class->id)}}">Class {{$class->grade->name}} {{$class->stream->name}}</a></p>
+                            <p class="text-gray-500 font-thin text-sm">Members: <b class="font-semibold">{{count($class->members)}}</b>, Year: <b class="font-semibold">{{$class->academic_year->year}}</b>, School: <b class="font-semibold">{{ucwords($class->grade->level->name)}}</b></p>
                         </div>
                         <div>
                             <a class="mr-2 text-blue-400 hover:underline hover:text-blue-600" href="{{route('classes.edit', $class->id)}}">Edit</a>

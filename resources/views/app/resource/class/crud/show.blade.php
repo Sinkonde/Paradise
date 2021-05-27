@@ -29,10 +29,10 @@
 @section('title')
 <div class="flex z-50" x-data={show:false} >
     <span class="text-xl md:text-lg text-gray-500"><b class="cursor-pointer mr-4  font-semibold" @click="show=!show">Class {{$class->grade->name.' '.$class->stream->name}} - ({{$class->academic_year->year}})</b><span @click="show=!show" class="fi fi-angle-down hover:text-gray-600 text-gray-300 cursor-pointer text-sm"></span> </span>
-    <div style="z-index: 99999999999 !important" x-show="show" class="absolute bg-white rounded mt-10 flex flex-col border shadow-lg divide-y w-1/5" @click.away="show=false">
-        <a class="px-2 py-2 hover:bg-gray-100" href="{{route('classes.index')}}">All</a>
+    <div style="z-index: 99999999999 !important" x-show="show" class="absolute bg-white rounded mt-10 flex flex-col border shadow-lg divide-y md:w-1/5 w-3/5" @click.away="show=false">
+        <a class="px-2 py-2 hover:bg-gray-100" href="{{route('classes.index')}}"><b>All</b></a>
         @foreach ($classes as $clas)
-            <a class="@if($clas->id == $class->id) bg-gray-50 @endif px-2 hover:bg-gray-100 text-xs" href="{{route('classes.show',['class' => $clas->id]+request()->except(['exam']))}}">{{'Class '.ucwords($clas->grade->name.' '.$clas->stream->name)}}</a>
+            <a class="@if($clas->id == $class->id) bg-gray-50 @endif px-2 py-2 md:py-1 hover:bg-gray-100 text-md md:text-xs" href="{{route('classes.show',['class' => $clas->id]+request()->except(['exam']))}}">{{'Class '.ucwords($clas->grade->name.' '.$clas->stream->name)}}</a>
          @endforeach
     </div>
 </div>

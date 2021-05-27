@@ -10,7 +10,7 @@
     <div class="flex flex-col flex-grow bg-black justify-between">
         <div class="flex flex-col">
             <div class="logo w-2/3 my-5 md:flex mx-auto hidden">
-                <img src="{{asset('img/logo3.png')}}" />
+                <img src="{{asset('img/logo.png')}}" />
             </div>
 
             <div class="logo w-full mt-8 mx-auto flex flex-col text-center text-gray-400 overflow-hidden truncate" x-data={dropDown:null} @click.away="dropDown=null">

@@ -77,17 +77,16 @@
             @endphp
             <div class="w-full bg-white rounded shadow mb-4 flex justify-between  p-4">
                 <div class="flex flex-col">
-                    <p class="text-xl">
-                        <a class="text-blue-500 hover:underline" href="{{route('students.show', $member->student->id)}}">
+                    <p class="text-md">
+                        <a class="text-blue-800 hover:underline" href="{{route('students.show', $member->student->id)}}">
                             {{ucwords(strtolower($member->first_name.' '.$member->second_name.' '.$member->sur_name))}}
                         </a>
                     </p>
-                    <p class="text-gray-500">
+                    <p class="text-gray-500 text-sm">
                         Gender: <span class="font-semibold">@if ($member->gender == 'm')
                             Boy @else Girl
                         @endif</span>
-                    </p>
-                    <p class="text-gray-500">
+                        ,
                         Birth: <span class="font-semibold" title="{{date('Y', strtotime($member->dob))}}">{{date("jS M", strtotime($member->dob))}}</span>
                     </p>
                 </div>

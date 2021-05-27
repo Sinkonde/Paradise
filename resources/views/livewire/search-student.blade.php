@@ -1,12 +1,12 @@
-<div class="w-full flex flex-col py-4 bg-white shadow">
-    <div class="w-full flex justify-between items-center px-4 pb-4 mb-4 border-b">
+<div class="w-full flex flex-col md:py-4 md:bg-white md:shadow">
+    <div class="w-full flex justify-between items-center p-4 mb-4 border-b bg-white sticky top-12">
         {{-- <p class="text-xl md:text-xl text-gray-600 font-thin">All Pupils in the school <span>({{$students->count()}})</span></p> --}}
         <input class="w-full py-1 px-4 text-sm bg-gray-50 border border-gray-200 focus:bg-white rounded " wire:model="searchStudent" placeholder="Search Student" />
         <span class="fi fi-spinner fi-spin -ml-4" wire:loading></span>
 
     </div>
 
-    <div class="w-full px-4 hidden md:flex flex-col text-sm">
+    <div class="w-full px-4 hidden md:table flex-col text-sm">
         @if (count($students) == 0)
             <p class="text-xl font-semibold pl-4">Nothing to list</p>
         @else
@@ -72,10 +72,9 @@
 
     <div class="w-full px-0 md:hidden flex">
         @if (count($students) == 0)
-            <p class="text-xl font-semibold">Nothing to list</p>
+            <p class="text-xl font-semibold px-2">Nothing to list</p>
         @else
-        <table class="w-full">
-
+        {{-- <table class="w-full">
             <tbody>
                 @foreach ($students as $student)
                 <tr class="hover:bg-gray-50">
@@ -95,7 +94,12 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
+        </table> --}}
+        <div class="w-full flex flex-col">
+            @foreach ($students as $student)
+                <a class="w-full text-md bg-white rounded flex items-center justify-between mb-1 shadow p-2" href="{{route('students.show',$student->student->id)}}">{{ucwords($student->first_name.' '.$student->second_name.' '.$student->sur_name)}}</a>
+            @endforeach
+        </div>
         @endif
     </div>
 

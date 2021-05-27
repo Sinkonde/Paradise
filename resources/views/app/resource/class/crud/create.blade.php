@@ -1,5 +1,3 @@
-
-
 @extends('index')
 @section('contents')
     <div class="w-100 flex justify-center items-center">
