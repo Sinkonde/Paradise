@@ -1,5 +1,5 @@
 <div class="w-full flex flex-col md:py-4 md:bg-white md:shadow">
-    <div class="w-full flex justify-between items-center p-4 mb-4 border-b bg-white sticky top-12">
+    <div class="w-full flex justify-between items-center p-4 mb-4 border-b bg-white sticky top-12 shadow-lg">
         {{-- <p class="text-xl md:text-xl text-gray-600 font-thin">All Pupils in the school <span>({{$students->count()}})</span></p> --}}
         <input class="w-full py-1 px-4 text-sm bg-gray-50 border border-gray-200 focus:bg-white rounded " wire:model="searchStudent" placeholder="Search Student" />
         <span class="fi fi-spinner fi-spin -ml-4" wire:loading></span>
@@ -97,7 +97,21 @@
         </table> --}}
         <div class="w-full flex flex-col">
             @foreach ($students as $student)
-                <a class="w-full text-md bg-white rounded flex items-center justify-between mb-1 shadow p-2" href="{{route('students.show',$student->student->id)}}">{{ucwords($student->first_name.' '.$student->second_name.' '.$student->sur_name)}}</a>
+                <div class="w-full text-md bg-white rounded mb-2 shadow py-2 px-4">
+
+                    <a class="text-blue-500 font-normal overflow-hidden truncate" href="{{route('students.show',$student->student->id)}}">{{ucwords($student->first_name.' '.$student->second_name.' '.$student->sur_name)}}</a>
+                    <p class="text-sm text-gray-400">
+                        @if ($student->gender == '')
+                            Boy @else Girl
+                        @endif &middot; Class {{$student->student->class_member_in()->orderBy('created_at', 'DESC')->first()->class->grade->name.' '.$student->student->class_member_in()->orderBy('created_at', 'DESC')->first()->class->stream->name}}
+                         {{-- &middot; Registered: {{date("M Y", strtotime($student->joined))}} --}}
+                    </p>
+                    <div class="w-full">
+                        <p class=" text-right">
+                            <a class="text-blue-500 text-sm px-4" href="{{route('students.show', $student->student->id)}}">Show</a>
+                        </p>
+                    </div>
+                </div>
             @endforeach
         </div>
         @endif

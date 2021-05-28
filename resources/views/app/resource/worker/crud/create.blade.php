@@ -7,9 +7,6 @@
                 <p class="md:text-lg text-yellow-600 font-thin"><span class="fi fi-exclamation"></span> You have to <a class="text-blue-600 hover:underline" href="{{route('depertments.create')}}">register depertment</a> first before workers!</p>
             </div>
             @else
-            <div class="sticky top-0 w-full flex justify-between items-center px-4 pt-4 pb-4 mb-4 md:px-4 md:pb-4 md:mb-4 border-b bg-white">
-                <p class="md:text-xl text-gray-600 font-thin">Register New Worker</p>
-            </div>
 
             <div class="w-full px-4 md:px-4 flex flex-col">
                 <form action="{{route('workers.store')}}" method="post">
@@ -29,7 +26,6 @@
                                 @foreach ([['name'=>'Male', 'value'=>'m'], ['name'=>'Female', 'value'=>'f']] as $gender)
                                     <option value="{{$gender['value']}}">{{$gender['name']}}</option>
                                 @endforeach
-                                <option>All</option>
                             </x-form.input>
                         </div>
                     </div>
@@ -47,7 +43,7 @@
                         <div class="w-full md:w-1/2 md:pr-2">
                             <x-form.input classes="w-full mb-4" label="Address" name="address" />
                         </div>
-                        <div class="w-full md:w-1/2 md:pl-2">
+                        <div class="w-full md:w-1/2 pl-2">
                             <x-form.input classes="w-full mb-4" label="Depertment" name="depertment_id" select="true">
                                 @foreach ($depertments as $depertment)
                                     <option value="{{$depertment->id}}">{{$depertment->name}}</option>
@@ -62,5 +58,9 @@
             @endif
         </div>
     </div>
+@endsection
+
+@section('title')
+<p class="md:text-lg text-gray-800">Register New Worker</p>
 @endsection
 

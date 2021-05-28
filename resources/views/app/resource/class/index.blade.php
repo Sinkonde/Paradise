@@ -46,9 +46,9 @@
                         <div class="flex flex-col w-full">
                             <p class="text-lg"><a class="text-blue-500 hover:underline" href="{{route('classes.show',$class->id)}}">Class {{$class->grade->name}} {{$class->stream->name}}</a></p>
                             <p class="text-gray-500 font-thin text-sm">
-                                Members: <b class="font-semibold">{{count($class->members)}}</b>,
-                                <span class="">Year: <b class="font-semibold">{{$class->academic_year->year}}</b>,</span>
-                                School: <b class="font-semibold">{{ucwords($class->grade->level->name)}}</b></p>
+                                <b class="font-semibold">{{count($class->members)}}</b> Members <span class="font-normal">&middot;</span>
+                                Year <span class=""><b class="font-semibold">{{$class->academic_year->year}}</b> <span class="font-normal">&middot;</span></span>
+                                In <b class="font-semibold">{{ucwords($class->grade->level->name)}}</b></p>
                         </div>
                         <div class="flex justify-between w-full">
                             <a></a>

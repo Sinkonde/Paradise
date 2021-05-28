@@ -7,7 +7,7 @@
     </div>
 
     <div id="for_administration">
-        @foreach ([['name'=>'staff', 'link'=>'workers','query'=>null],['name'=>'parents', 'link'=>'users', 'query'=>'view=parents'],['name'=>'users', 'link'=>'users','query'=>null]] as $link)
+        @foreach ([['name'=>'staff', 'link'=>'workers','query'=>null],['name'=>'parents', 'link'=>'users', 'query'=>'view=parents'],['name'=>'users', 'link'=>'users','query'=>null],['name'=>'depertments', 'link'=>'depertments','query'=>null]] as $link)
             <a class="pl-11 text-left block py-2 md:px-4 md:py-1 hover:bg-gray-800 text-teal-500 hover:text-teal-400 mdtext-sm text-md" href="{{route($link['link'].'.index')}}{{__('?'.$link['query'])}}">{{ucfirst($link['name'])}}</a>
         @endforeach
     </div>

@@ -8,7 +8,7 @@
                 </div>
             @else
                 <div class="w-full px-8 md:px-8 flex flex-col">
-                    <p class="text-lg font-thin pb-2 mb-4 border-b">Choose subject to add to this class</p>
+                    {{-- <p class="text-lg font-thin pb-2 mb-4 border-b">Choose subject to add to this class</p> --}}
                     <form action="{{route('class-subjects.store')}}" method="post">
                         @csrf
                         <input type="hidden" name="callback" value="{{$callback ? $callback : NULL}}"/>
@@ -48,4 +48,8 @@
             @endif
         </div>
     </div>
+@endsection
+
+@section('title')
+<p class="text-lg font-normal md:font-thin">Choose subject to add to this class</p>
 @endsection

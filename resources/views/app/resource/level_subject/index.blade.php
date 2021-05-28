@@ -2,12 +2,12 @@
 @section('contents')
     <div class="w-100 flex justify-center ">
         <div class="w-full flex flex-col py-4 bg-white shadow">
-            <div class="w-full flex justify-between items-center px-4 pb-4 mb-4 md:px-4 md:pb-4 md:mb-4 border-b">
+            {{-- <div class="w-full flex justify-between items-center px-4 pb-4 mb-4 md:px-4 md:pb-4 md:mb-4 border-b">
                 <p class="text-xl md:text-xl text-gray-600 font-thin">All Subjects <span>({{$subjects->count()}} Subjects)</span></p>
                 <a class="absolute right-4 bottom-4" href="{{route('level-subjects.create')}}">
                     <x-form.button color='yellow' label='New' />
                 </a>
-            </div>
+            </div> --}}
 
             <div class="w-full px-4 hidden md:flex">
                 @if (count($subjects) == 0)
@@ -47,4 +47,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('title')
+<p class="text-lg text-gray-600 font-normal md:font-thin">All Subjects <span>({{$subjects->count()}} Subjects)</span></p>
 @endsection

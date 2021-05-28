@@ -7,7 +7,7 @@
                 <p class="text-xl md:text-xl text-gray-600 cursor-arrow" title="Total Teachers">{{$teachers->count()}}</span></p>
             </div> --}}
 
-            <div class="w-full px-4">
+            <div class="w-full md:px-4">
                 @if (count($teachers) == 0)
                     <p class="text-xl font-semibold text-gray-400">No any teachers yet! <a class="text-blue-400 hover:text-blue-500 hover:underline" href="{{route('teachers.create',['callback' => route('teachers.index')])}}">Add</a> now</p>
                 @else
@@ -42,18 +42,20 @@
                 </table>
                 <div>
                     @foreach ($teachers as $teacher)
-                    <div class="flex justify-between md:hidden p-3 bg-white rounded shadow my-2">
-                        <p class="text-md">
-                            <a href="{{route('users.show',$teacher->worker->guardian->particulars->id)}}" class="hover:underline text-blue-500">
-                                {{$teacher->worker->guardian->particulars->gender == 'm' ? 'Mr. ' : "Madam "}}
-                                {{ucwords(strtolower($teacher->worker->guardian->particulars->first_name.' '.$teacher->worker->guardian->particulars->second_name.' '.$teacher->worker->guardian->particulars->sur_name))}}
-                            </a>
-                        </p>
+                    <div class="md:hidden p-3 bg-white rounded shadow my-2">
                         <div>
+                            <p class="font-normal">
+                                <a href="{{route('users.show',$teacher->worker->guardian->particulars->id)}}" class="hover:underline text-blue-500">
+                                    {{$teacher->worker->guardian->particulars->gender == 'm' ? 'Mr. ' : "Madam "}}
+                                    {{ucwords(strtolower($teacher->worker->guardian->particulars->first_name.' '.$teacher->worker->guardian->particulars->second_name.' '.$teacher->worker->guardian->particulars->sur_name))}}
+                                </a>
+                            </p>
+                        </div>
+                        <div class="justify-start items-stretch">
                             <form action="{{route('teachers.destroy', $teacher->id)}}" method="post">
                                 @csrf
                                 {{method_field('delete')}}
-                                <button class="cursor-pointer hover:underline text-red-300 hover:text-red-500" role="button">Remove</button>
+                                <button class="text-sm cursor-pointer hover:underline text-red-500 hover:text-red-500" role="button">Remove</button>
                             </form>
                         </div>
                     </div>
@@ -65,7 +67,7 @@
     </div>
 
     <a href="{{route('teachers.create',['callback' => route('titles.index')])}}" class="absolute bottom-4 right-4">
-        <button class="rounded-full p-2 bg-yellow-500 text-white hover:bg-yellow-600 shadow hover:shadow-lg">
+        <button class="rounded-full p-4 md:p-2 bg-yellow-500 text-white hover:bg-yellow-600 shadow hover:shadow-lg">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
         </button>
     </a>
