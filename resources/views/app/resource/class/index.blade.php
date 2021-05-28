@@ -31,8 +31,9 @@
                                         <form action="{{route('classes.destroy', $class->id)}}" method="post">
                                             @csrf
                                             {{method_field('delete')}}
-                                            <button class="cursor-pointer hover:underline text-red-300 hover:text-red-500" role="button">Delete</button>
-                                        </form>
+                                            @if (count($class->members) == 0)
+                                                <button class="cursor-pointer hover:underline text-red-500 hover:text-red-400" role="button">Delete</button>
+                                            @endif                                        </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -72,7 +73,7 @@
         </div>
     </div>
 
-    <a href="{{route('classes.create',['callback' => route('classes.index')])}}" class="absolute bottom-4 right-4">
+    <a href="{{route('classes.create',['callback' => route('classes.index')])}}" class="fixed bottom-4 right-4">
         <button class="rounded-full p-4 md:p-2 bg-yellow-500 text-white hover:bg-yellow-600 shadow hover:shadow-lg">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
         </button>
