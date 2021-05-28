@@ -1,7 +1,7 @@
 @extends('index')
 @section('contents')
     <div class="w-100 flex justify-center items-center">
-        <div class="w-full md:w-4/5 lg:w-3/5 flex flex-col md:mt-4 md:bg-white md:shadow">
+        <div class="w-full md:w-4/5 lg:w-3/5 flex flex-col mt-4 md:bg-white md:shadow">
             {{-- {{dd($for_level)}} --}}
             @if (is_null($for_level))
                 <div class="">
@@ -16,7 +16,7 @@
                     <p class="text-xl md:text-xl text-gray-600 font-thin">Create new Class for <b> {{$for_level->name}}</b></p>
                 </div> --}}
 
-                <div class="w-full px-4 md:px-4 flex flex-col text-sm">
+                <div class="w-full px-4 md:px-4 flex flex-col text-sm bg-white py-4 roundend shadow">
                     <form action="{{route('classes.store')}}" method="post">
                         @csrf
                         <input type="hidden" name="callback" value="{{$callback}}" />

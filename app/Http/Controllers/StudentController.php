@@ -71,16 +71,16 @@ class StudentController extends Controller
         ClassMember::create(['student_id' => $student_id, 'class_id' =>$request->class_id, 'reference_no'=>$this->getReferenceNumber(ClassMember::class, [10000, 99999])]);
 
         //store parent
-        if (User::where('email',$request->email)->first())//check if email already exists, if so use it
-        {
-           $this->user_id = User::where('email',$request->email)->first()->id;
-           $this->storeGuardian($request);
-        }
-        else
-        {
+        // if (User::where('email',$request->email)->first())//check if email already exists, if so use it
+        // {
+        //    $this->user_id = User::where('email',$request->email)->first()->id;
+        //    $this->storeGuardian($request);
+        // }
+        // else
+        // {
             $this->prepareUSerDataFromRequest($request, ['gender' => StudentGuardianRelation::find($request->relation_id)->gender]);
             $this->saveGuardian($request);
-        }
+        //}
 
         StudentGuardian::create(['student_id' => $student_id, 'guardian_id' => $this->guardian_id, 'student_guardian_relation_id' => $request->relation_id]);
 

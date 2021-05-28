@@ -41,18 +41,28 @@
 
                 <div class="md:hidden">
                     @foreach ($classes as $class)
-                    <div class="flex justify-between items-center mb-4 bg-white rounded p-4 shadow">
-                        <div class="flex flex-col">
+                    <div class="flex flex-col justify-between items-center mb-4 bg-white rounded p-4 shadow">
+                        <div class="flex flex-col w-full">
                             <p class="text-lg"><a class="text-blue-500 hover:underline" href="{{route('classes.show',$class->id)}}">Class {{$class->grade->name}} {{$class->stream->name}}</a></p>
-                            <p class="text-gray-500 font-thin text-sm">Members: <b class="font-semibold">{{count($class->members)}}</b>, Year: <b class="font-semibold">{{$class->academic_year->year}}</b>, School: <b class="font-semibold">{{ucwords($class->grade->level->name)}}</b></p>
+                            <p class="text-gray-500 font-thin text-sm">
+                                Members: <b class="font-semibold">{{count($class->members)}}</b>,
+                                <span class="">Year: <b class="font-semibold">{{$class->academic_year->year}}</b>,</span>
+                                School: <b class="font-semibold">{{ucwords($class->grade->level->name)}}</b></p>
                         </div>
-                        <div>
-                            <a class="mr-2 text-blue-400 hover:underline hover:text-blue-600" href="{{route('classes.edit', $class->id)}}">Edit</a>
+                        <div class="flex justify-between w-full">
+                            <a></a>
+                            <div class="flex">
+
                                         <form action="{{route('classes.destroy', $class->id)}}" method="post">
                                             @csrf
                                             {{method_field('delete')}}
-                                            {{-- <button class="cursor-pointer hover:underline text-red-300 hover:text-red-500" role="button">Delete</button> --}}
+                                            @if (count($class->members) == 0)
+                                            <button class="cursor-pointer hover:underline text-red-500 hover:text-red-600" role="button">Delete</button>
+                                            @endif
+
                                         </form>
+                                        <a class="ml-4 text-blue-400 hover:underline hover:text-blue-600" href="{{route('classes.edit', $class->id)}}">Edit</a>
+                            </div>
                         </div>
                     </div>
                     @endforeach

@@ -1,14 +1,14 @@
 @extends('index')
 @section('contents')
     <div class="w-100 flex justify-center">
-        <div class="w-full py-4 md:bg-white">
+        <div class="w-full py-4 bg-gray-50">
 
             <div class="w-full flex justify-between items-center">
                 <div class="w-full flex justify-between flex-col">
                     <form action="{{route('students.store')}}" method="post">
                         @csrf
                         <input type="hidden" value="{{$callback}}" name="callback" />
-                        <div class="student-info p-4 rounded bg-white border border-gray-200 flex flex-col  shadow">
+                        <div class="student-info p-4 rounded md:bg-white border border-gray-200 flex flex-col  shadow">
                             <p class="mb-4 text-lg font-thin">Student Info</p>
                             <div class="flex flex-col md:flex-row mb-2">
                                 <x-form.input label="First Name" name="sfirst_name" classes="mb-2 md:mb-0 md:w-1/3 w-full" />
@@ -35,9 +35,9 @@
                             </div>
                         </div>
                         <div class="parent-info my-6 p-4 rounded bg-yellow-50 border border-yellow-200 flex flex-col shadow">
-                            <div class="flex md:flex-col justify-between md:items-center mb-4  sticky top-12 pt-2 bg-yellow-50">
-                                <p class="mb-4 text-lg md:font-thin">Parent Info</p>
-                                <input class="w-2/3 md:w-full py-1 px-4 text-sm border border-gray-200 focus:bg-white rounded ring" wire:model="searchParent" placeholder="Search Parent" />
+                            <div class="flex md:flex-col justify-between mb-4  sticky top-12 pt-2 bg-yellow-50">
+                                <p class="mb-4 text-lg md:font-thin text-left">Parent Info</p>
+                                {{-- <input class="w-2/3 md:w-full py-1 px-4 text-sm border border-gray-200 focus:bg-white rounded ring" wire:model="searchParent" placeholder="Search Parent" /> --}}
                             </div>
                             <div>
                                 <div class="flex flex-col md:flex-row mb-2">
