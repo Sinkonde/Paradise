@@ -47,8 +47,8 @@
 @endsection
 
 @section('title')
-<p class="text-xl md:text-lg text-gray-600 font-semibold overflow-hidden truncate">
-    {{ucwords($student->particulars->first_name.' '.$student->particulars->second_name.' '.$student->particulars->sur_name)}}
+<p class="text-lg md:text-lg text-gray-600 font-semibold overflow-hidden truncate">
+    {{ucwords(strtolower($student->particulars->first_name.' '.$student->particulars->second_name.' '.$student->particulars->sur_name))}}
     @if ($student->current_class->first()->is_dayscholar->first())
         <span class="hidden md:inline-block px-2 py-1 text-sm bg-green-100 text-green-600 rounded-full font-semibold" title="From {{$student->current_class->first()->is_dayscholar->first()->route->name}}">Dayscholar</span>
     @else

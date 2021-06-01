@@ -28,7 +28,7 @@
 
 @section('title')
 <div class="flex z-50" x-data={show:false} >
-    <span class="text-xl md:text-lg text-gray-500"><b class="cursor-pointer mr-4  font-semibold" @click="show=!show">Class {{$class->grade->name.' '.$class->stream->name}} - ({{$class->academic_year->year}})</b><span @click="show=!show" class="fi fi-angle-down hover:text-gray-600 text-gray-300 cursor-pointer text-sm"></span> </span>
+    <span class="text-lg md:text-lg text-gray-500"><b class="cursor-pointer mr-4  font-semibold" @click="show=!show">Class {{$class->grade->name.' '.$class->stream->name}} - ({{$class->academic_year->year}})</b><span @click="show=!show" class="fi fi-angle-down hover:text-gray-600 text-gray-300 cursor-pointer text-sm"></span> </span>
     <div style="z-index: 99999999999 !important" x-show="show" class="absolute bg-white rounded mt-10 flex flex-col border shadow-lg divide-y md:w-1/5 w-3/5" @click.away="show=false">
         <a class="px-2 py-2 hover:bg-gray-100" href="{{route('classes.index')}}"><b>All</b></a>
         @foreach ($classes as $clas)
@@ -39,15 +39,15 @@
 @endsection
 
 @section('navs')
-<div class="hidden md:flex justify-between md:pr-5">
+<div class="hidden md:flex justify-between md:pr-5 overflow-hidden truncate">
     @foreach ($links as $a_link)
         <a href="{{route('classes.show',['class' => $class->id, 'link' => $a_link['link']])}}" class=" @if($a_link['link'] == $link) text-blue-600 font-semibold @endif pl-4 hover:text-blue-900">{{ucfirst($a_link['name'])}}</a>
     @endforeach
 </div>
 
 <div class="flex md:hidden justify-between md:pr-5" x-data={show:false}>
-    <span class="mr-5" x-on:click="show=true" @click.away="show=false">NAV</span>
-    <div class="absolute flex flex-col w-3/3 mt-4 shadow-lg border bg-white p-4 mr-10 rounded" x-show="show">
+    <span class="fi fi-move-h-a mr-8" x-on:click="show=true" @click.away="show=false"></span>
+    <div class="absolute -ml-10 flex flex-col w-3/3 mt-6 shadow-lg border bg-white p-4 rounded" x-show="show">
         @foreach ($links as $a_link)
             <a href="{{route('classes.show',['class' => $class->id, 'link' => $a_link['link']])}}" class=" @if($a_link['link'] == $link) text-blue-600 font-semibold @endif hover:text-blue-900 py-1">{{ucfirst($a_link['name'])}}</a>
         @endforeach
