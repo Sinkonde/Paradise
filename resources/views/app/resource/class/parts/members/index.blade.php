@@ -1,8 +1,9 @@
+
 @section('members')
 <div class="w-full text-sm md:bg-white -mt-4 md:p-4 pt-4 md:shadow">
-    <div class="flex justify-between pb-5 text-gray-500 md:border-b border-gray-100">
+    <div class="flex justify-between pb-5 text-gray-900 md:text-gray-500 md:border-b border-gray-100">
         <div>
-            <p class="text-lg font-thin">
+            <p class="text-lg md:font-thin">
                 @if (count($class->members))
                     All members ({{count($class->members)}})
                 @else
@@ -12,7 +13,7 @@
         </div>
         <div class="flex items-center">
             <a href="{{route('classes.show',['class'=>$class->id, 'import_members'=>'pdf'])}}" title="List in PDF">
-                <span class="fi fi-acrobat-reader md:bg-red-50 md:hover:bg-red-100 px-2 py-1 rounded md:text-red-500 md:hover:text-red-600 "></span>
+                <span class="bg-red-50 border border-red-300 md:border-0 md:hover:bg-red-100 px-2 py-1 rounded text-red-500 hover:text-red-600 ">PDF</span>
             </a>
         </div>
 
@@ -75,25 +76,27 @@
             @php
                 $parent = $member->student->parents()->first();
             @endphp
-            <div class="w-full bg-white rounded shadow mb-4 flex justify-between  p-4">
-                <div class="flex flex-col">
-                    <p class="text-md">
+            <div class="w-full bg-white rounded shadow mb-4 flex flex-col p-4">
+                <div class="flex flex-col mb-2">
+                    <p class="text-normal">
                         <a class="text-blue-800 hover:underline" href="{{route('students.show', $member->student->id)}}">
                             {{ucwords(strtolower($member->first_name.' '.$member->second_name.' '.$member->sur_name))}}
                         </a>
                     </p>
-                    <p class="text-gray-500 text-sm">
-                        Gender: <span class="font-semibold">@if ($member->gender == 'm')
+                    <p class="text-gray-500 text-xs">
+                        <span>@if ($member->gender == 'm')
                             Boy @else Girl
                         @endif</span>
-                        ,
-                        Birth: <span class="font-semibold" title="{{date('Y', strtotime($member->dob))}}">{{date("jS M", strtotime($member->dob))}}</span>
+                        &middot; <span title="{{date('Y', strtotime($member->dob))}}">{{$member->student->age}}</span> years
                     </p>
                 </div>
-                <div class="flex items-center text-blue-500">
-                    <a href="{{route('students.edit', ['student'=>$member->student->id, 'callback' => route('classes.show',['class'=>$class->id,'link'=>'m'])])}}">
-                        Edit
-                    </a>
+                <div class="flex justify-between text-blue-500 w-full text-right">
+                    <div></div>
+                    <div>
+                        <a href="{{route('students.edit', ['student'=>$member->student->id, 'callback' => route('classes.show',['class'=>$class->id,'link'=>'m'])])}}">
+                            Edit
+                        </a>
+                    </div>
                 </div>
             </div>
         @endforeach

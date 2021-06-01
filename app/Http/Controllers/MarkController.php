@@ -34,8 +34,15 @@ class MarkController extends Controller
      */
     public function create(Request $request)
     {
-        $teacher = Auth::user()->guardian->worker->teacher;
-        $subjects = $teacher->subjects;
+        $subjects = null; $teacher=null;
+        if (Auth::user()->guardian) {
+            if (Auth::user()->guardian->worker) {
+                if (Auth::user()->guardian->worker->teacher) {
+                    $teacher = Auth::user()->guardian->worker->teacher;
+                    $subjects = $teacher->subjects;
+                }
+            }
+        }
 
         if ($request->class) {
             $class = Clas::findOrFail($request->class);

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -45,5 +46,10 @@ class Student extends Model
 
     public function timelines(){
         return $this->morphMany(Timeline::class, 'timelinable');
+    }
+
+    public function getAgeAttribute(){
+        //dd($this->attributes);
+        return Carbon::parse($this->attributes['dob'])->age;
     }
 }

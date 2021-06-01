@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Faker\Provider\bg_BG\PhoneNumber;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -62,4 +63,5 @@ class User extends Authenticatable
     public function guardian(){
         return $this->hasOne(Guardian::class, 'user_id');
     }
+
 }
