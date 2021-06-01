@@ -17,7 +17,7 @@
                                 <x-form.input label="Sur Name" name="ssur_name" value="{{$student->particulars->sur_name}}" classes="mb-2 md:mb-0 md:pl-4 md:w-1/3 w-full" />
                             </div>
                             <div class="flex">
-                                <x-form.input label="Birth Date" name="dob" value="{{$student->dob}}" classes="w-1/3" />
+                                <x-form.input label="Birth Date" name="dob" value="{{$student->dob}}" classes="w-1/3" type="date" />
                                 <x-form.input classes="pl-4 w-1/3" label="Gender" name="sgender" select="true">
                                     @foreach ([['name'=>'Male', 'value'=>'m'], ['name'=>'Female', 'value'=>'f']] as $gender)
                                         <option @if ($student->particulars->gender == $gender['value'])
