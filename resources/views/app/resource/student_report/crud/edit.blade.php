@@ -1,75 +1,50 @@
 @extends('index')
 @section('contents')
+@inject('exams', 'App\Models\Exam')
+@inject('academic_year', 'App\Models\AcademicYear')
     <div class="w-100 flex justify-center items-center">
-        <div class="w-full md:w-4/5 lg:w-3/5 flex flex-col pb-8 bg-white shadow">
-            <div class="sticky top-0 w-full flex-col justify-between items-center px-4 pt-4 pb-4 mb-4 md:px-4 md:pb-4 md:mb-4 border-b bg-white">
-                <p class="text-xl md:text-2xl text-gray-600 font-thin">Edit <span>{{ucwords(strtolower($worker->guardian->particulars->first_name.' '.$worker->guardian->particulars->sur_name))}}</span> info</p>
-                <p class="text-gray-300 leading-6 text-xs">
-                    @foreach ($worker->guardian->particulars->phones as $phone)
-                        {{$phone->phone}}
-                        @if (!$loop->last)
-                            {{__(", ")}}
-                        @else
-                            , <a href="" class="text-blue-200 underline hover:text-blue-400">Edit phones</a>
-                        @endif
-                    @endforeach
-                </p>
-            </div>
+        <div class="w-full md:w-4/5 lg:w-3/5 flex flex-col py-4 bg-white shadow">
 
             <div class="w-full px-4 md:px-4 flex flex-col">
-                <form action="{{route('workers.update', ['worker' => $worker->id, 'user' => $worker->guardian->particulars->id, 'guardian' => $worker->guardian->id, 'depertment'=>$worker->worker_depertments()->orderBy('created_at', 'DESC')->first()->id])}}" method="post">
+                <form action="{{route('student-reports.update', $report->id)}}" method="post">
                     @csrf
+                    <input type="hidden" name="callback" value="{{request()->callback}}" />
                     {{method_field('patch')}}
-                    <div class="flex flex-col md:flex-row">
-                        <div class="w-full md:w-1/4 md:pr-2">
-                            <x-form.input classes="w-full mb-4" label="First Name" name="first_name" value="{{$worker->guardian->particulars->first_name}}" />
+                    <div class="flex flex-col">
+                        <div class="w-full md:full">
+                            <x-form.input classes="w-full mb-4" label="Name" name="name" value="{{$report->name}}" />
                         </div>
-                        <div class="w-full md:w-1/4 md:px-2">
-                            <x-form.input classes="w-full mb-4" label="Second Name" name="second_name" value="{{$worker->guardian->particulars->second_name}}" />
-                        </div>
-                        <div class="w-full md:w-1/4 md:px-2">
-                            <x-form.input classes="w-full mb-4" label="Surname" name="sur_name" value="{{$worker->guardian->particulars->sur_name}}" />
-                        </div>
-                        <div class="w-full md:w-1/4 md:pl-2">
-                            <x-form.input classes="w-full mb-4" label="Gender" name="gender" select="true">
-                                @foreach ([['name'=>'Male', 'value'=>'m'], ['name'=>'Female', 'value'=>'f']] as $gender)
-                                    <option @if ($worker->guardian->particulars->gender == $gender['value'])
-                                        selected = "selected"
-                                    @endif value="{{$gender['value']}}">{{$gender['name']}}</option>
-                                @endforeach
-                                <option>All</option>
-                            </x-form.input>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col md:flex-row">
-                        <div class="w-full md:w-1/2 md:pr-2">
-                            <x-form.input classes="w-full mb-4" label="Email" name="email" value="{{$worker->guardian->particulars->email}}" />
-                        </div>
-                        <div class="w-full md:w-1/2 md:pl-2">
-                            <x-form.input classes="w-full mb-4" label="Joined" name="joined" value="{{$worker->joined}}" />
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col md:flex-row">
-                        <div class="w-full md:w-1/2 md:pr-2">
-                            <x-form.input classes="w-full mb-4" label="Address" name="address" value="{{$worker->guardian->address}}" />
-                        </div>
-                        <div class="w-full md:w-1/2 md:pl-2">
-                            <x-form.input classes="w-full mb-4" label="Depertment" name="depertment_id" select="true">
-                                @foreach ($depertments as $depertment)
-                                    <option @if ($worker->worker_depertments()->orderBy('created_at', 'DESC')->first()->depertment_id == $depertment->id)
-                                        selected = "selected"
-                                    @endif value="{{$depertment->id}}">{{$depertment->name}}</option>
+                        <div class="w-full md:w-full">
+                            <x-form.input classes="w-full mb-4" label="Main Exam" name="exam_id" select="true">
+                                @foreach ($exams->get() as $exam)
+                                    <option @if ($report->exam_id == $exam->id)
+                                        selected="selected"
+                                    @endif value="{{$exam->id}}">{{$exam->name}}</option>
                                 @endforeach
                             </x-form.input>
                         </div>
                     </div>
 
-                    <x-form.button color="teal" label="Register" />
+                    <div class="flex">
+                        <div class="w-full md:w-1/3 md:pr-2">
+                            <x-form.input classes="w-full mb-4" label="Closing date" type="date" name="closing_date" value="{{$report->closing_date}}" />
+                        </div>
+                        <div class="w-full md:w-1/3 md:px-2">
+                            <x-form.input classes="w-full mb-4" label="Boarding Opening Date" type="date" name="board_open" value="{{$report->board_open}}" />
+                        </div>
+                        <div class="w-full md:w-1/3 md:pl-2">
+                            <x-form.input classes="w-full mb-4" label="Dayscholar Opening Date" type="date" name="day_open" value="{{$report->day_open}}" />
+                        </div>
+                    </div>
+
+                    <x-form.button color="green" label="Update" />
                 </form>
             </div>
         </div>
     </div>
+@endsection
+
+@section('title')
+    <p class="md:text-lg md:text-gray-600 md:font-thin">Edit Exam</p>
 @endsection
 

@@ -10,16 +10,20 @@
     <title>Document</title>
 </head>
     <body>
-        @foreach ($data['results'] as $student => $results)
-        <div style="@if(!$loop->last)page-break-after:always @endif">
-            @yield('title')
+        @if (isset($data['results']))
+            @foreach ($data['results'] as $student => $results)
+            <div style="@if(!$loop->last)page-break-after:always @endif">
+                @yield('title')
 
-            <x-academic-reort.student-info student="{{$student}}" />
+                <x-academic-reort.student-info student="{{$student}}" />
 
-            <x-academic-reort.results-table :results="$results" :report="$report" totalStudents="{{count($data['results'])}}" student="{{$student}}" />
+                <x-academic-reort.results-table :results="$results" :report="$report" totalStudents="{{count($data['results'])}}" student="{{$student}}" />
 
-            @yield('result_footer')
-        </div>
-        @endforeach
+                @yield('result_footer')
+            </div>
+            @endforeach
+        @else
+        <h3><i>No marks found!! Please ask to import them!!</i></h3>
+        @endif
     </body>
 </html>

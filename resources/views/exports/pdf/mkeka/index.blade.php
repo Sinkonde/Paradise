@@ -12,28 +12,32 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="page-break-after: always">
-        @yield('title')
-    </div>
-    <div style="page-break-after: always">
-        <p>A: TOP TEN STUDENTS</p>
-        @yield('top10')
-    </div>
+    @if (isset($results['results']))
+        <div style="page-break-after: always">
+            @yield('title')
+        </div>
+        <div style="page-break-after: always">
+            <p>A: TOP TEN STUDENTS</p>
+            @yield('top10')
+        </div>
 
-    <div style="page-break-after: always">
-        <p>B: RESULTS</p>
-        @yield('mkeka')
-    </div>
+        <div style="page-break-after: always">
+            <p>B: RESULTS</p>
+            @yield('mkeka')
+        </div>
 
-    <div style="page-break-after: always">
-        <p>C: ANALYSIS</p>
-        @yield('summary')
-    </div>
+        <div style="page-break-after: always">
+            <p>C: ANALYSIS</p>
+            @yield('summary')
+        </div>
 
-    <div style="">
-        <p>D: SUBJECTS</p>
-        @yield('subs')
-    </div>
+        <div style="">
+            <p>D: SUBJECTS</p>
+            @yield('subs')
+        </div>
+    @else
+    <h2><i>No marks found!!, Please ask to add them!!</i></h2>
+    @endif
 </body>
 </html>
 

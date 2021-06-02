@@ -112,12 +112,19 @@ trait ResultProcessor {
     function processResults($class, $class_result_id){
         $results = $this->getClassMembersMarksFromDB($class, $class_result_id);
 
-        $out = [
-            'results'       => $results,
-            'summary'       => $this->createSummary($this->getClassMembersMarksFromDB($class, $class_result_id)),
-            'total_avg'     => round(array_sum($this->total_of_totals) / count($this->total_of_totals),1),
-            'sub_summary'   => $this->subSummary($results)
-        ];
+        if (count($this->total_of_totals)==0)
+        {
+            $out = [];
+        }
+        else
+        {
+            $out = [
+                'results'       => $results,
+                'summary'       => $this->createSummary($this->getClassMembersMarksFromDB($class, $class_result_id)),
+                'total_avg'     => round(array_sum($this->total_of_totals) / count($this->total_of_totals),1),
+                'sub_summary'   => $this->subSummary($results)
+            ];
+        }
 
         return $out;
     }

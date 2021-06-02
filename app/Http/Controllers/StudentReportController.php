@@ -78,7 +78,7 @@ class StudentReportController extends Controller
      */
     public function edit(StudentReport $studentReport)
     {
-        //
+        return view('app.resource.student_report.crud.edit',['report'=>$studentReport]);
     }
 
     /**
@@ -90,7 +90,8 @@ class StudentReportController extends Controller
      */
     public function update(Request $request, StudentReport $studentReport)
     {
-        //
+        $studentReport->update($request->except(['_token', 'callback','_method']));
+        return redirect(route('student-reports.index'));
     }
 
     /**
