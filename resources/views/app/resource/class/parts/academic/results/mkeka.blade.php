@@ -26,7 +26,7 @@
                     @php
                         $st = $members->find($student)->student->particulars
                     @endphp
-                    <td class="border">{{ucwords($st->first_name.' '.$st->second_name.' '.$st->sur_name)}}</td>
+                    <td class="border">{{ucwords(strtolower($st->first_name.' '.$st->second_name.' '.$st->sur_name))}}</td>
 
                     @foreach ($subjects as $subject)
                         @foreach ($subject->teacher_subjects as $sub)
