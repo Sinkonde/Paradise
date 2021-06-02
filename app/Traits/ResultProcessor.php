@@ -111,6 +111,7 @@ trait ResultProcessor {
 
     function processResults($class, $class_result_id){
         $results = $this->getClassMembersMarksFromDB($class, $class_result_id);
+        $summary = $this->createSummary($this->getClassMembersMarksFromDB($class, $class_result_id));
 
         if (count($this->total_of_totals)==0)
         {
@@ -120,7 +121,7 @@ trait ResultProcessor {
         {
             $out = [
                 'results'       => $results,
-                'summary'       => $this->createSummary($this->getClassMembersMarksFromDB($class, $class_result_id)),
+                'summary'       => $summary,
                 'total_avg'     => round(array_sum($this->total_of_totals) / count($this->total_of_totals),1),
                 'sub_summary'   => $this->subSummary($results)
             ];
