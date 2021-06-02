@@ -1,10 +1,10 @@
 @section('title')
 <div style="text-align:center; padding-bottom:50px; heght:100%; background-color:#ddd">
     <img src="{{public_path('img/logo3.png')}}" alt="" srcset="" class="" style="width:100px; margin-bottom:100px">
-    <p class="font-semibold" style="font-size:12px; padding-bottom:3px; margin:0px; line-height:;font-weight:300">THE SHINING</p>
-    <p style="font-size:16px; padding-bottom:3px; margin:0px;">NURSERY AND PRIMARY ENGLISH MEDIUM SCHOOL</p>
+    <p class="font-semibold" style="font-size:12px; padding-bottom:3px; margin:0px; line-height:;font-weight:300">{{strtoupper(env('APP_NAME'))}}</p>
+    <p style="font-size:16px; padding-bottom:3px; margin:0px;">{{strtoupper(env('APP_DESC'))}}</p>
 
-    <p style="font-size:18px; padding-top:3px; margin:0px;"><b>CLASS ACADEMIC RESULTS ANALYSIS</b></p>
+    <p style="font-size:18px; padding-top:3px; margin:0px;"><b>CLASS {{strtoupper($class->grade->name.'-'.$class->stream->name)}} ACADEMIC RESULTS ANALYSIS</b></p>
     <table style="position: absolute; bottom:0px; width:100%">
         <tr>
             @inject('members', 'App\Models\ClassMember')
