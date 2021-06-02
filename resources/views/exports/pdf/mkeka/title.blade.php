@@ -14,7 +14,7 @@
                 $class = $members->find($student)->class;
             @endphp
             <td>CLASS {{strtoupper($class->grade->name.'-'.$class->stream->name)}}</td>
-            <td style="text-align: right">MARCH 2021</td>
+            <td style="text-align: right">{{date('F Y')}}</td>
         </tr>
     </table>
 </div>
