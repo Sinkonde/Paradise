@@ -33,13 +33,15 @@
         </thead>
         <tbody>
             @foreach ($class->members as $member)
-            <tr>
-                <td style="text-align:center">{{$member->reference_no}}</td>
-                <td style="text-align:center">{{$loop->iteration}}</td>
-                <td>
-                    {{ucwords(strtolower($member->student->particulars->first_name.' '.$member->student->particulars->second_name.' '.$member->student->particulars->sur_name))}}
-                </td>
-            </tr>
+                @if ($member->student->particulars)
+                <tr>
+                    <td style="text-align:center">{{$member->reference_no}}</td>
+                    <td style="text-align:center">{{$loop->iteration}}</td>
+                    <td>
+                        {{ucwords(strtolower($member->student->particulars->first_name.' '.$member->student->particulars->second_name.' '.$member->student->particulars->sur_name))}}
+                    </td>
+                </tr>
+                @endif
             @endforeach
         </tbody>
     </table>
