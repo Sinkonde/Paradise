@@ -1,7 +1,8 @@
 @section('info')
 <div class="w-full text-  bg-white shadow-lg rounded">
-    <div class="w-full py-3 px-5 border-b">
+    <div class="w-full py-3 px-5 border-b flex justify-between">
         <p class="text-lg font-semibold text-gray-500">Report Info</p>
+        <a href="{{route('student-reports.edit', $report->id)}}" class="text-blue-500 hover:text-blue-600 hover:undeline">Edit</a>
     </div>
     <div class="px-5 w-full divide-y divide-gray-100">
         <div class="flex flex-col py-2">
