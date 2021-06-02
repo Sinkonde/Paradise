@@ -8,9 +8,9 @@
     <b style="margin-bottom:2px">C: MAELEZO MUHIMU</b>
     <ol type="1" style="line-height: 25px">
         <li>Shule imefungwa siku ya <b>{{setCustomDate($report->closing_date)}}</b> tarehe <b>{{date('d', strtotime($report->closing_date))}} {{setCustomDate($report->closing_date, false)}}</b>, mwaka  <b>{{date('Y', strtotime($report->closing_date))}}</b></li>
-        <li>Wanafunzi wa <b>bweni</b> watafungua siku ya <b>{{setCustomDate($report->board_open)}}</b> ya tarehe <b>{{date('d', strtotime($report->board_open))}} {{setCustomDate($report->board_open, false)}}</b>, mwaka  <b>{{date('Y', strtotime($report->board_open))}}</b></li>
-        <li>Wanafunzi wa <b>kutwa (dayscholars)</b> watafungua siku ya <b>{{setCustomDate($report->day_open)}}</b> ya tarehe <b>{{date('d', strtotime($report->day_open))}} {{setCustomDate($report->day_open, false)}}</b>, mwaka  <b>{{date('Y', strtotime($report->day_open))}}</b></li>
-        <li>Vyombo vya kulia chakula (yaani sahani, kikombe na kijiko), vyote kwa pamoja vinapatikana shuleni kwa jumla ya gharama ya shilingi elfu tatu (3000/=) tu.</li>
+        {{-- <li>Wanafunzi wa <b>bweni</b> watafungua siku ya <b>{{setCustomDate($report->board_open)}}</b> ya tarehe <b>{{date('d', strtotime($report->board_open))}} {{setCustomDate($report->board_open, false)}}</b>, mwaka  <b>{{date('Y', strtotime($report->board_open))}}</b></li> --}}
+        <li>Shule itafunguliwa siku ya <b>{{setCustomDate($report->day_open)}}</b> ya tarehe <b>{{date('d', strtotime($report->day_open))}} {{setCustomDate($report->day_open, false)}}</b>, mwaka  <b>{{date('Y', strtotime($report->day_open))}}</b></li>
+        {{-- <li>Vyombo vya kulia chakula (yaani sahani, kikombe na kijiko), vyote kwa pamoja vinapatikana shuleni kwa jumla ya gharama ya shilingi elfu tatu (3000/=) tu.</li> --}}
     </ol>
 </div>
 

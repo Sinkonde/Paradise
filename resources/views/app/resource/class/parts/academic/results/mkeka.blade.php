@@ -34,8 +34,8 @@
                                 <td class="py-1 text-center border"  title="{{ucwords(strtolower($subject->level_subject->subject->short))}}">
                                     {{ $result['subjects'][$sub->id] }}
                                 </td>
-                            @else
-                                <td class="border"></td>
+                            {{-- @else
+                                <td class="border"></td> --}}
                             @endif
                         @endforeach
                     @endforeach
