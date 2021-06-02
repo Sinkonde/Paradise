@@ -12,7 +12,21 @@
                     </div>
                 </div>
             @else
-
+                <div class="w-full flex justify-between items-center px-4 pb-4 mb-4 md:px-4 md:pb-4 md:mb-4 border-b" x-data={show:false}>
+                    <p class="text-xl md:text-xl text-gray-600 font-thin">Add Subjects to level <span @click="show=true" class="cursor-pointer"><b>{{$for_level->name}}</b></span> <span @click="show=true" class="cursor-pointer text-xs fi fi-angle-down"></span></p>
+                    <div class="absolute rounded bg-white border flex flex-col mt-24 ml-60 shadow-lg" x-show="show" @click.away="show=false"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="transform opacity-0"
+                        x-transition:enter-end="transform opacity-100"
+                        x-transition:leave="transition ease-in duration-100"
+                        x-transition:leave-start="transform opacity-100"
+                        x-transition:leave-end="transform opacity-0"
+                        >
+                        @foreach ($levels as $level)
+                        <a class="px-2 text-xs py-2 hover:bg-gray-100" href="{{route('level-subjects.create',['for_level' => $level->id])}}">{{$level->name}}</a>
+                        @endforeach
+                    </div>
+                </div>
 
                 <div class="w-full px-8 md:px-8 flex flex-col">
                     <form action="{{route('level-subjects.store')}}" method="post">
@@ -54,22 +68,4 @@
             @endif
         </div>
     </div>
-@endsection
-
-@section('title')
-<div class="" x-data={show:false}>
-    <p class="text-xl md:text-lg text-gray-600 font-thin">Add Subjects to level <span @click="show=true" class="cursor-pointer"><b>{{$for_level->name}}</b></span> <span @click="show=true" class="cursor-pointer text-xs fi fi-angle-down"></span></p>
-    <div class="absolute rounded bg-white border flex flex-col mt-0 ml-60 shadow-lg" x-show="show" @click.away="show=false"
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="transform opacity-0"
-        x-transition:enter-end="transform opacity-100"
-        x-transition:leave="transition ease-in duration-100"
-        x-transition:leave-start="transform opacity-100"
-        x-transition:leave-end="transform opacity-0"
-        >
-        @foreach ($levels as $level)
-        <a class="px-2 text-xs py-2 hover:bg-gray-100" href="{{route('level-subjects.create',['for_level' => $level->id])}}">{{$level->name}}</a>
-        @endforeach
-    </div>
-</div>
 @endsection
