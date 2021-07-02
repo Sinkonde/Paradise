@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Traits\UserControllerTrait;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -37,7 +38,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //add roles
+        if($request->store == 'role'){
+            $request->validate(['role'=>'required', 'user_id'=>'required']);
+            User::find($request->user_id)->assignRole($request->role);
+        }
+
+        //remove roles
+        if($request->action == 'deleteRole'){
+            $request->validate(['role'=>'required', 'user_id'=>'required']);
+            User::find($request->user_id)->removeRole($request->role);
+        }
+
+        return back();
     }
 
     /**
@@ -48,7 +61,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('app.resource.user.crud.show', ['user'=>$user]);
+        return view('app.resource.user.crud.show', ['user'=>$user, 'roles'=>Role::all()]);
     }
 
     /**
