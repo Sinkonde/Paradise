@@ -141,9 +141,13 @@ trait ResultProcessor {
                         break;
                     }
                     $results = $this->processResults(Clas::find($member->class_id), $class_result->id);
-                    if (array_key_exists($member->id, $results['results'])) {
-                        $studentResult = array_merge($studentResult, [$class_result->exam->id => $results['results'][$member->id]]);
+
+                    if($results){
+                        if (array_key_exists($member->id, $results['results'])) {
+                            $studentResult = array_merge($studentResult, [$class_result->exam->id => $results['results'][$member->id]]);
+                        }
                     }
+
             }
         }
         return $studentResult;
