@@ -4,13 +4,13 @@
 <main class="container mx-auto max-w-lg mt-10 max-h-full px-4">
     <div class="flex">
         <div class="w-full">
-            <section class="flex flex-col break-words bg-white border-1 rounded-md shadow-lg">
+            <section class="flex flex-col break-words">
 
-                <header class="font-semibold bg-black text-yellow-300 text-2xl text-center py-3 px-6 sm:py-6 sm:px-8 rounded-t-md">
-                    {{ __('Login') }}
+                <header class="flex justify-center z-50">
+                    <img class="w-1/3" src="{{asset('img/logo.png')}}" alt="">
                 </header>
 
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
+                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8 bg-white block -mt-12 border-1 rounded-md md:shadow-lg" method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="flex flex-wrap">
