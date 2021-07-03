@@ -6,9 +6,9 @@
     @foreach ($results as $exam =>$result)
         @if ($exams->find($exam))
             <div class="flex justify-between pr-4">
-                <p class="md:text-xl md:font-thin  mt-2 mb-2 md:mb-0 md:mt-3 text-gray-700 md:text-gray-400">{{$loop->iteration}}. {{title($exams->find($exam)->name)}}</p>
+                <p class="text-xs md:text-xl md:font-thin  mt-2 mb-2 md:mb-0 md:mt-3 text-gray-700 md:text-gray-400">{{$loop->iteration}}. {{title($exams->find($exam)->name)}}</p>
                 @if (is_connected())
-                <a href="{{route('mail.send_results', ['student'=>$student->id, 'exam'=>$exam])}}" class="px-2 py-1 mb-1 rounded-full text-xs text-teal-500 hover:bg-teal-50 mt-3 md:font-thin">Send to Parent</a>
+                {{-- <a href="{{route('mail.send_results', ['student'=>$student->id, 'exam'=>$exam])}}" class="px-2 py-1 mb-1 rounded-full text-xs text-teal-500 hover:bg-teal-50 mt-3 md:font-thin">Send to Parent</a> --}}
                 @endif
             </div>
             <div class="px-4">
@@ -41,7 +41,7 @@
                  </table>
 
                  <div class="md:hidden flex flex-row">
-                    <p class="font-medium">
+                     <p>
                    @foreach ($result['subjects'] as $s => $mark)
                            @if ($subject->find($subject))
                                <span class="mr-1 text-xs text-black bg-yellow-400 rounded-full px-1 py-1">
