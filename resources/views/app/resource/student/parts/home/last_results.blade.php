@@ -34,6 +34,7 @@
                 </tr>
              </table>
              <div class="md:hidden flex flex-row">
+                 <p>
                 @foreach ($result['subjects'] as $s => $mark)
                         @if ($subject->find($subject))
                             <span class="mr-1 text-xs text-black bg-yellow-400 rounded-full px-1 py-1">
@@ -53,6 +54,7 @@
                     <span class="mr-1 text-xs text-black bg-yellow-400 rounded-full px-1 py-1">
                         post-{{$result['position']}}
                     </span>
+                 </p>
              </div>
              <a href="{{route('students.show',['student'=>$student->id, 'link'=>'a'])}}" class="text-xs mt-2 md:mt-3 md:text-xs text-blue-500 md:text-blue-300 md:hover:text-blue-500 font-semibold md:font-thin">View all results >></a>
         @endif
