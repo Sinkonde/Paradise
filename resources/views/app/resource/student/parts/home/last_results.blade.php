@@ -37,25 +37,25 @@
                  <p class="font-medium">
                 @foreach ($result['subjects'] as $s => $mark)
                         @if ($subject->find($subject))
-                            <span class="mr-1 text-xs text-black bg-yellow-200 rounded-full px-1 py-1">
+                            <span class="mr-1 text-xs text-black bg-yellow-100 rounded-full px-1 py-1">
                                 {{ucfirst($subject->find($s)->class_subject->level_subject->subject->name)}} - {{$mark}}
                             </span>
                         @endif
                     @endforeach
 
-                    <span class="mr-1 text-xs text-black bg-yellow-400 rounded-full px-1 py-1">
+                    <span class="mr-1 text-xs text-black bg-yellow-200 rounded-full px-1 py-1">
                         Total - {{$result['total']}}
                     </span>
 
-                    <span class="mr-1 text-xs text-black bg-yellow-400 rounded-full px-1 py-1">
+                    <span class="mr-1 text-xs text-black bg-yellow-200 rounded-full px-1 py-1">
                         AVG - {{round(array_sum($result['subjects'])/count($result['subjects']),2)}}
                     </span>
 
-                    <span class="mr-1 text-xs text-black bg-yellow-400 rounded-full px-1 py-1">
+                    <span class="mr-1 text-xs text-black bg-yellow-200 rounded-full px-1 py-1">
                         GRD - {{setGrade(array_sum($result['subjects'])/count($result['subjects']))}}
                     </span>
 
-                    <span class="mr-1 text-xs text-black bg-yellow-400 rounded-full px-1 py-1">
+                    <span class="mr-1 text-xs text-black bg-yellow-200 rounded-full px-1 py-1">
                         POS - {{$result['position']}}
                     </span>
                  </p>
