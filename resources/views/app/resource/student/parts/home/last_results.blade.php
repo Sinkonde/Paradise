@@ -34,32 +34,37 @@
                 </tr>
              </table>
              <div class="md:hidden flex flex-row">
-                 <p class="font-medium">
-                @foreach ($result['subjects'] as $s => $mark)
-                        @if ($subject->find($subject))
-                            <span class="mr-1 text-xs text-black bg-yellow-400 rounded-full px-1 py-1">
-                                {{title($subject->find($s)->class_subject->level_subject->subject->name)}} - {{$mark}}
-                            </span>
-                        @endif
-                    @endforeach
 
-                    <span class="mr-1 text-xs text-black bg-yellow-300 rounded-full px-1 py-1">
-                        Total - {{$result['total']}}
-                    </span>
+                @php
+                    $avg = round(array_sum($result['subjects'])/count($result['subjects']),2);
+                    $color = $avg>80.5?'green':($avg>60.5?'blue':($avg>40.5?'yellow':'red'));
+                @endphp
+                 <p>
+               @foreach ($result['subjects'] as $s => $mark)
+                       @if ($subject->find($subject))
+                           <span class="inline-block mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
+                               {{title($subject->find($s)->class_subject->level_subject->subject->name)}} - {{$mark}}
+                           </span>
+                       @endif
+                   @endforeach
 
-                    <span class="mr-1 text-xs text-black bg-yellow-300 rounded-full px-1 py-1">
-                        AVG - {{round(array_sum($result['subjects'])/count($result['subjects']),2)}}
-                    </span>
+                   <span class="inline-block  mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
+                       Total - {{$result['total']}}
+                   </span>
 
-                    <span class="mr-1 text-xs text-black bg-yellow-300 rounded-full px-1 py-1">
-                        GRD - {{setGrade(array_sum($result['subjects'])/count($result['subjects']))}}
-                    </span>
+                   <span class="inline-block  mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
+                       AVG - {{round(array_sum($result['subjects'])/count($result['subjects']),2)}}
+                   </span>
 
-                    <span class="mr-1 text-xs text-black bg-yellow-300 rounded-full px-1 py-1">
-                        POS - {{$result['position']}}
-                    </span>
-                 </p>
-             </div>
+                   <span class="inline-block  mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
+                       GRD - {{setGrade(array_sum($result['subjects'])/count($result['subjects']))}}
+                   </span>
+
+                   <span class="inline-block  mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
+                       POS - {{$result['position']}}
+                   </span>
+                </p>
+            </div>
              <a href="{{route('students.show',['student'=>$student->id, 'link'=>'a'])}}" class="text-xs mt-2 md:mt-3 md:text-xs text-blue-500 md:text-blue-300 md:hover:text-blue-500 font-semibold md:font-thin">View all results >></a>
         @endif
     @endforeach

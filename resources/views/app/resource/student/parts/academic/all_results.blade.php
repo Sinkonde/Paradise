@@ -1,14 +1,14 @@
 @section('all-results')
-<div class="w-full py-4 px-4 flex flex-col">
+<div class="w-full py-4 px-4 flex flex-col" x-data="{openedIndex: 0}">
     <p class="text-xs font-semibold text-black">All Results</p>
     @inject('exams', 'App\Models\Exam')
     @inject('subject', 'App\Models\SubjectTeacher')
     @foreach ($results as $exam =>$result)
         @if ($exams->find($exam))
             <div class="flex justify-between pr-4">
-                <p class="text-xs md:text-xl md:font-thin  mt-2 mb-2 md:mb-0 md:mt-3 text-gray-700 md:text-gray-400">{{$loop->iteration}}. {{title($exams->find($exam)->name)}}</p>
+                <p @click="openedIndex = {{$loop->iteration}}" class="text-sm md:text-xl md:font-thin  mt-2 mb-2 md:mb-0 md:mt-3 text-blue-500 md:text-gray-400 cursor-pointer md:cursor-text">{{$loop->iteration}}. {{title($exams->find($exam)->name)}}</p>
                 @if (is_connected())
-                {{-- <a href="{{route('mail.send_results', ['student'=>$student->id, 'exam'=>$exam])}}" class="px-2 py-1 mb-1 rounded-full text-xs text-teal-500 hover:bg-teal-50 mt-3 md:font-thin">Send to Parent</a> --}}
+                <a href="{{route('mail.send_results', ['student'=>$student->id, 'exam'=>$exam])}}" class="px-2 py-1 mb-1 rounded-full text-xs text-teal-500 hover:bg-teal-50 mt-3 md:font-thin hidden md:inline-block">Send to Parent</a>
                 @endif
             </div>
             <div class="px-4">
@@ -40,29 +40,34 @@
                     </tr>
                  </table>
 
-                 <div class="md:hidden flex flex-row">
+                 <div class="md:hidden flex flex-row" x-show.transition.in.duration.800ms="openedIndex=='{{$loop->iteration}}'" @click.away.transition.out.duration.800ms="openedIndex='0'">
+
+                    @php
+                        $avg = round(array_sum($result['subjects'])/count($result['subjects']),2);
+                        $color = $avg>80.5?'green':($avg>60.5?'blue':($avg>40.5?'yellow':'red'));
+                    @endphp
                      <p>
                    @foreach ($result['subjects'] as $s => $mark)
                            @if ($subject->find($subject))
-                               <span class="mr-1 text-xs text-black bg-yellow-400 rounded-full px-1 py-1">
+                               <span class="inline-block mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
                                    {{title($subject->find($s)->class_subject->level_subject->subject->name)}} - {{$mark}}
                                </span>
                            @endif
                        @endforeach
 
-                       <span class="mr-1 text-xs text-black bg-yellow-300 rounded-full px-1 py-1">
+                       <span class="inline-block  mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
                            Total - {{$result['total']}}
                        </span>
 
-                       <span class="mr-1 text-xs text-black bg-yellow-300 rounded-full px-1 py-1">
+                       <span class="inline-block  mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
                            AVG - {{round(array_sum($result['subjects'])/count($result['subjects']),2)}}
                        </span>
 
-                       <span class="mr-1 text-xs text-black bg-yellow-300 rounded-full px-1 py-1">
+                       <span class="inline-block  mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
                            GRD - {{setGrade(array_sum($result['subjects'])/count($result['subjects']))}}
                        </span>
 
-                       <span class="mr-1 text-xs text-black bg-yellow-300 rounded-full px-1 py-1">
+                       <span class="inline-block  mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">
                            POS - {{$result['position']}}
                        </span>
                     </p>
@@ -70,6 +75,5 @@
             </div>
         @endif
     @endforeach
-
 </div>
 @endsection
