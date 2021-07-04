@@ -39,7 +39,7 @@
                     $avg = round(array_sum($result['subjects'])/count($result['subjects']),2);
                     $color = $avg>80.5?'green':($avg>60.5?'blue':($avg>40.5?'yellow':'red'));
                 @endphp
-                 <p>
+                 <p class="leading-1">
                @foreach ($result['subjects'] as $s => $mark)
                        @if ($subject->find($subject))
                            <span class="inline-block mr-1 text-xs text-{{$color}}-700 bg-{{$color}}-100 rounded-full px-1 py-1">

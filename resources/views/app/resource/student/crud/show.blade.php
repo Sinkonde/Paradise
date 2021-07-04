@@ -4,7 +4,7 @@
 @include('app.resource.student.parts.timelines.timelines')
 @section('contents')
     <div class="w-100 flex justify-center items-center">
-        <div class="w-full flex flex-col py-4 md:px-8 px-0">
+        <div class="w-full flex flex-col py-4 md:px-8">
             {{-- <div class="w-full flex justify-between items-center py-4 md:pb-4 bg-white shadow px-4 rounded mb-5">
 
                 <div class="flex justify-between">
@@ -47,7 +47,7 @@
 @endsection
 
 @section('title')
-<p class="text-lg md:text-lg text-gray-600 font-semibold overflow-hidden truncate">
+<p class=" font-normal text-lg md:text-lg text-black md:text-gray-600 md:font-semibold overflow-hidden truncate">
     {{ucwords(strtolower($student->particulars->first_name.' '.$student->particulars->second_name.' '.$student->particulars->sur_name))}}
     @if ($student->current_class->first()->is_dayscholar->first())
         <span class="hidden md:inline-block px-2 py-1 text-sm bg-green-100 text-green-600 rounded-full font-semibold" title="From {{$student->current_class->first()->is_dayscholar->first()->route->name}}">Dayscholar</span>

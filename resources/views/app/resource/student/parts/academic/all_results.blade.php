@@ -6,7 +6,7 @@
     @foreach ($results as $exam =>$result)
         @if ($exams->find($exam))
             <div class="flex justify-between pr-4">
-                <p @click="openedIndex = {{$loop->iteration}}" class="text-sm md:text-xl md:font-thin  mt-2 mb-2 md:mb-0 md:mt-3 text-blue-500 md:text-gray-400 cursor-pointer md:cursor-text">{{$loop->iteration}}. {{title($exams->find($exam)->name)}}</p>
+                <p @click="openedIndex = {{$loop->iteration}}" class="block md:text-xl md:font-thin  mt-2 mb-2 md:mb-0 md:mt-3 text-blue-500 md:text-gray-400 cursor-pointer md:cursor-text">{{$loop->iteration}}. {{title($exams->find($exam)->name)}}</p>
                 @if (is_connected())
                 <a href="{{route('mail.send_results', ['student'=>$student->id, 'exam'=>$exam])}}" class="px-2 py-1 mb-1 rounded-full text-xs text-teal-500 hover:bg-teal-50 mt-3 md:font-thin hidden md:inline-block">Send to Parent</a>
                 @endif
