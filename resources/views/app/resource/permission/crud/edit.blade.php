@@ -10,10 +10,10 @@
             </div> --}}
 
             <div class="w-full px-4 md:px-8 flex flex-col">
-                <form action="{{route('roles.update', $role->id)}}" method="post">
+                <form action="{{route('permissions.update', $permission->id)}}" method="post">
                     @csrf
                     {{method_field('patch')}}
-                    <x-form.input value="{{$role->name}}" classes="w-full mb-4" label="Name" name="name" />
+                    <x-form.input value="{{$permission->name}}" classes="w-full mb-4" label="Name" name="name" />
                     {{-- <x-form.input value="{{$permission->description}}" classes="w-full mb-4" label="Description" name="description" /> --}}
                     <x-form.button color="green" label="Update" />
                 </form>
@@ -23,5 +23,5 @@
 @endsection
 
 @section('title')
-<p class="text-xl md:text-lg text-gray-600 font-thin">Edit <b>{{$role->name}}</b> role info</p>
+<p class="text-xl md:text-lg text-gray-600 font-thin">Edit <b>{{$permission->name}}</b> permission info</p>
 @endsection

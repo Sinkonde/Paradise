@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('fees-structures', 'FeeStructureController');
     Route::resource('student-reports', 'StudentReportController');
     Route::resource('roles', 'RoleController');
+    Route::resource('permissions', 'PermissionController');
 
     //excel templates
     Route::get('export/results', 'ExportController@resultTemplate')->name('result.template');

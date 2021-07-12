@@ -24,7 +24,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.resource.role.crud.create');
     }
 
     /**
@@ -35,7 +35,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Role::create($request->only(['name']));
+        return redirect(route('roles.index'))->with('status', 'Role Created successfully');
     }
 
     /**
@@ -57,7 +58,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('app.resource.role.crud.edit',['role'=> $role]);
     }
 
     /**
@@ -69,7 +70,8 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $role->update($request->only(['name']));
+        return redirect(route('roles.index'))->with('status', 'Role updated successfully');
     }
 
     /**

@@ -3,7 +3,7 @@
     <div class="w-100 flex justify-center ">
         <div class="w-full flex flex-col py-4 md:bg-white md:shadow">
             <div class="w-full md:px-4 text-sm">
-                @if (count($roles) == 0)
+                @if (count($permissions) == 0)
                     <p class="text-2xl font-semibold">Nothing to list</p>
                 @else
                 <table class="hidden md:table w-full ">
@@ -14,23 +14,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($roles as $role)
+                        @foreach ($permissions as $permission)
                             <tr class="hover:bg-gray-100">
                                 <td class="py-2 text-center">{{$loop->iteration}}</td>
                                 <td class="py-2">
-                                    <a href="{{route('roles.show', $role->id)}}" class="hover:underline">{{ucfirst($role->name)}}</a>
+                                    <a href="{{route('permissions.show', $permission->id)}}" class="hover:underline">{{ucfirst($permission->name)}}</a>
                                 </td>
                                 <td class="py-2 flex flex-row">
-                                @if ($role->name != "Super Admin")
-
-                                    <a class="mr-2 text-blue-400 hover:underline hover:text-blue-600" href="{{route('roles.edit', $role->id)}}">Edit</a>
-                                        <form action="{{route('roles.destroy', $role->id)}}" method="post">
+                                    <a class="mr-2 text-blue-400 hover:underline hover:text-blue-600" href="{{route('permissions.edit', $permission->id)}}">Edit</a>
+                                        <form action="{{route('permissions.destroy', $permission->id)}}" method="post">
                                             @csrf
                                             {{method_field('delete')}}
                                             <button class="cursor-pointer hover:underline text-red-300 hover:text-red-500" role="button">Delete</button>
                                         </form>
-
-                                @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -38,9 +34,9 @@
                 </table>
 
                 <div class="md:hidden w-full">
-                    @foreach ($roles as $role)
+                    @foreach ($permissions as $role)
                     <div class="w-full py-5 mb-4 flex flex-col bg-white px-3 rounded shadow">
-                        <p class="text-lg"><a href="{{route('roles.show', $role->id)}}" class="hover:text-blue-500">{{ucfirst($role->name)}}</a></p>
+                        <p class="text-lg"><a href="{{route('permissions.show', $permission->id)}}" class="hover:text-blue-500">{{ucfirst($permission->name)}}</a></p>
                         {{-- <p class="text-gray-300">{{ucfirst($role->description)}}</p> --}}
                     </div>
                    @endforeach
@@ -49,12 +45,12 @@
             </div>
         </div>
     </div>
-    <a class="fixed right-5 bottom-5" href="{{route('roles.create')}}">
-        <x-form.button color='yellow' label='Create Role' />
+    <a class="fixed right-5 bottom-5" href="{{route('permissions.create')}}">
+        <x-form.button color='yellow' label='Create Permission' />
     </a>
 @endsection
 
 @section('title')
-    <p class="text-lg md:text-lg text-gray-600 font-thin">All Roles <span>({{$roles->count()}} levels)</span></p>
+    <p class="text-lg md:text-lg text-gray-600 font-thin">All Permissions <span>({{$permissions->count()}} permissions)</span></p>
 @endsection
 

@@ -7,9 +7,9 @@
             </div> --}}
 
             <div class="w-full px-4 md:px-8 flex flex-col">
-                <form action="{{route('roles.store')}}" method="post">
+                <form action="{{route('permissions.store')}}" method="post">
                     @csrf
-                    <x-form.input classes="w-full mb-4" label="Role Name" name="name" />
+                    <x-form.input classes="w-full mb-4" label="Permission Name" name="name" />
                     {{-- <x-form.input classes="w-full mb-4" label="Description" name="description" /> --}}
                     <x-form.button color="green" label="Create" />
                 </form>
@@ -19,5 +19,5 @@
 @endsection
 
 @section('title')
-<p class="text-lg">Create New Role</p>
+<p class="text-xl md:text-lg text-gray-600 font-thin">Create New Permission</p>
 @endsection
