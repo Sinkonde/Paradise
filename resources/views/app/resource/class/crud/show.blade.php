@@ -3,12 +3,13 @@
 @include('app.resource.class.parts.academic.index')
 @include('app.resource.class.parts.bursar.index')
 @include('app.resource.class.parts.home.index')
+@include('app.resource.class.parts.awards.index')
 @section('contents')
     <div class="w-100 flex justify-center items-center">
         <div class="w-full flex flex-col py-4">
 
             <div class="w-full flex flex-col md:bg-gray-50 bg-gray-100">
-                @switch($link)
+                @switch(request()->link)
                     @case('m')
                         @yield('members')
                         @break
@@ -17,6 +18,9 @@
                         @break
                     @case('b')
                         @yield('bursar')
+                        @break
+                    @case('awards')
+                        @yield('awards')
                         @break
                     @default
                         @yield('home')
@@ -43,6 +47,9 @@
     @foreach ($links as $a_link)
         <a href="{{route('classes.show',['class' => $class->id, 'link' => $a_link['link']])}}" class=" @if($a_link['link'] == $link) text-blue-600 font-semibold @endif pl-4 hover:text-blue-900">{{ucfirst($a_link['name'])}}</a>
     @endforeach
+    @if ($class->grade->grade == 7)
+        <a href="{{route('classes.show',['class' => $class->id, 'link' => 'awards'])}}" class=" text-yellow-500 @if('awards' == request()->link) font-semibold @endif pl-4 hover:text-yellow-900">Awards</a>
+    @endif
 </div>
 
 <div class="flex md:hidden justify-between text-black" x-data={show:false}>
@@ -51,6 +58,9 @@
         @foreach ($links as $a_link)
             <a href="{{route('classes.show',['class' => $class->id, 'link' => $a_link['link']])}}" class=" @if($a_link['link'] == $link) text-blue-600 font-semibold @endif hover:text-blue-900 py-1">{{ucfirst($a_link['name'])}}</a>
         @endforeach
+        @if ($class->grade->grade == 7)
+            <a href="{{route('classes.show',['class' => $class->id, 'link' => 'awards'])}}" class=" @if('awards' == $link) text-blue-600 font-semibold @endif hover:text-blue-900 py-1">Awards</a>
+        @endif
     </div>
 </div>
 @endsection

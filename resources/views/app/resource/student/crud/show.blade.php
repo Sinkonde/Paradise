@@ -2,6 +2,7 @@
 @include('app.resource.student.parts.home.index')
 @include('app.resource.student.parts.academic.index')
 @include('app.resource.student.parts.timelines.timelines')
+@include('app.resource.student.parts.awards.index')
 @section('contents')
     <div class="w-100 flex justify-center items-center">
         <div class="w-full flex flex-col py-4 md:px-8">
@@ -38,6 +39,9 @@
                     @case('t')
                         @yield('timelines')
                         @break
+                    @case('awards')
+                        @yield('awards')
+                        @break
                     @default
                         @yield('home')
                 @endswitch
@@ -63,6 +67,10 @@
         @foreach ($links as $a_link)
             <a href="{{route('students.show',['student' => $student->id, 'link' => $a_link['link']])}}" class=" @if($a_link['link'] == $link) text-blue-600 font-semibold @endif pl-4 hover:text-blue-900">{{ucfirst($a_link['name'])}}</a>
         @endforeach
+
+        @if ($student->particulars->awards()->count()>0)
+            <a href="{{route('students.show',['student' => $student->id, 'link' => 'awards'])}}" class=" @if($a_link['link'] == 'Awards') text-blue-600 font-semibold @endif pl-4 hover:text-blue-900">{{ucfirst('Awards')}}</a>
+        @endif
     </div>
     <div class="md:hidden flex flex-col cursor-pointer" x-data={show:false}>
         <span class="fi fi-nav-icon-list-a text-gray-400 hover:text-gray-600" @click="show=true"></span>

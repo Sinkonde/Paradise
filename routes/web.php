@@ -60,6 +60,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('student-reports', 'StudentReportController');
     Route::resource('roles', 'RoleController');
     Route::resource('permissions', 'PermissionController');
+    Route::resource('religions', 'ReligionController');
+    Route::resource('renominations', 'ReligionRenominationController');// not yet completed
+    Route::resource('award-titles', 'AwardTitleController');
+    Route::resource('academic-award-years', 'AcademicAwardYearController');//award-winners
+    Route::resource('academic-award-winners', 'AcademicAwardWinnerController');
 
     //excel templates
     Route::get('export/results', 'ExportController@resultTemplate')->name('result.template');
@@ -72,6 +77,4 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Reports
     Route::get('mkeka-pdf', 'ReportPDF@mkeka')->name('mkeka-pdf');
-
 });
-//

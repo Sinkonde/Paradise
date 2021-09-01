@@ -65,4 +65,8 @@ class User extends Authenticatable
         return $this->hasOne(Guardian::class, 'user_id');
     }
 
+    public function awards(){
+        return $this->hasMany(AcademicAwardWinner::class, 'user_id', 'id');
+    }
+
 }
